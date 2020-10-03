@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "babel-plugin-graphql-tag",
+    "@babel/plugin-syntax-dynamic-import"
+  ],
+  "presets": ["next/babel"]
+}

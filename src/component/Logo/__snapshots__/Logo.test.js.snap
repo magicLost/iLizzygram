@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo Render and props test Snapshots matches snapshot 1`] = `
+<body>
+  <div>
+    <a
+      href="/"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <img
+          alt="Lizzygram logo"
+          src="logo.svg"
+          width="80px"
+        />
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+  </div>
+</body>
+`;

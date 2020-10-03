@@ -3,9 +3,14 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
-      - "8080:8000"
-    volumes:
-      - /app/node_modules
-      - .:/app
+      - "8080:80"
+  #  build:
+  #   context: .
+  #  dockerfile: Dockerfile.dev
+  #ports:
+  # - "8080:8000"
+  #volumes:
+  # - /app/node_modules
+  #- .:/app

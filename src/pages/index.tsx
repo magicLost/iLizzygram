@@ -1,32 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import loadable from "@loadable/component";
+import pMinDelay from "p-min-delay";
 import Layout from "../component/Layout";
-import ButtonLink from "../component/ButtonLink";
 import IconButton from "@material-ui/core/IconButton";
 import AdbIcon from "@material-ui/icons/Adb";
 import Button from "@material-ui/core/Button";
 import MaterialLink from "@material-ui/core/Link";
 import { Link } from "gatsby";
+import SEO from "../component/SEO";
+import Backdrop from "@material-ui/core/Backdrop";
 
-interface IHomeProps {
-  hello: string;
-}
+const LogoLoadable = loadable(
+  () => pMinDelay(import("./../component/Logo/Logo"), 300),
+  {
+    fallback: <h2 style={{ color: "white" }}>...Loading</h2>,
+  }
+);
 
 const Home = () => {
+  const [isShow, setIsShow] = useState(false);
+
   return (
     <Layout>
-      <div>Hello world from Lizzygram!</div>
-      {/* <Link to="/test">Go to other page.</Link> */}
-      <IconButton aria-label="Home page" component={ButtonLink} href="/">
-        <AdbIcon />
-      </IconButton>
+      <SEO />
 
-      <Button aria-label="Home page" component={ButtonLink} href="/test">
-        Go to test page
+      <div>Hello world from Lizzygram!</div>
+
+      <Button onClick={() => setIsShow(prev => !prev)}>
+        Show dynamic content.
       </Button>
 
-      <MaterialLink href="/test" component={ButtonLink} variant="body2">
-        Material link to test
-      </MaterialLink>
+      <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop>
     </Layout>
   );
 };
