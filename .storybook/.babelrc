@@ -1,7 +1,8 @@
 {
   "plugins": [
-    "babel-plugin-graphql-tag",
-    "@babel/plugin-syntax-dynamic-import"
+    //"babel-plugin-graphql-tag",
+    "@babel/plugin-syntax-dynamic-import",
+    "babel-plugin-remove-graphql-queries"
   ],
-  "presets": ["next/babel"]
+  "presets": ["babel-preset-gatsby", "@babel/preset-typescript"]
 }

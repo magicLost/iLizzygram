@@ -8,15 +8,29 @@ import {
 import { configure } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
 
-import LoadableBackDrop from "./LoadableBackDrop";
-//import classes from "./LoadableBackDrop.module.scss";
+import IModal from ".";
+import classes from "./IModal.module.scss";
 
-describe("LoadableBackDrop", () => {
+describe("IModal", () => {
   let _render = null;
 
   describe("Render and props test", () => {
     beforeEach(() => {
-      _render = render(<LoadableBackDrop />);
+      _render = render(
+        <IModal open={true} onClose={() => console.log("close")}>
+          <div
+            style={{
+              width: "300px",
+              height: "200px",
+              textAlign: "center",
+              backgroundColor: "white",
+              padding: "20px",
+            }}
+          >
+            <p>Hello.</p>
+          </div>
+        </IModal>
+      );
     });
 
     afterEach(cleanup);

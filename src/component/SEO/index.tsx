@@ -35,7 +35,7 @@ const SEO = ({ title, description }: SEOProps) => {
   );
 };
 
-export default SEO;
+export default React.memo(SEO);
 
 const query = graphql`
   query SEO {

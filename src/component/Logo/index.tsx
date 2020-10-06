@@ -2,9 +2,10 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 //import classes from './Logo.module.scss';
 import { makeStyles } from "@material-ui/core/styles";
+import PureLogo from "./PureLogo";
 import { Link } from "gatsby";
 
-interface LogoProps {}
+//interface LogoProps {}
 
 const useStyles = makeStyles({
   iconButton: {
@@ -12,18 +13,8 @@ const useStyles = makeStyles({
   },
 });
 
-const Logo = ({}: LogoProps) => {
-  const classes = useStyles();
-  return (
-    <IconButton
-      aria-label="Home page"
-      className={classes.iconButton}
-      component={Link}
-      to="/"
-    >
-      <img src="logo.svg" width={"80px"} alt="Lizzygram logo" />
-    </IconButton>
-  );
+const Logo = () => {
+  return <PureLogo ILink={Link} />;
 };
 
 export default Logo;

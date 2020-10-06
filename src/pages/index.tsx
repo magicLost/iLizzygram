@@ -7,11 +7,19 @@ import AdbIcon from "@material-ui/icons/Adb";
 import Button from "@material-ui/core/Button";
 import MaterialLink from "@material-ui/core/Link";
 import { Link } from "gatsby";
-import SEO from "../component/SEO";
 import Backdrop from "@material-ui/core/Backdrop";
+import ErrorBoundary from "../component/ErrorBoundary";
+import SEO from "../component/SEO";
 
 const LogoLoadable = loadable(
-  () => pMinDelay(import("./../component/Logo/Logo"), 300),
+  //import(/* webpackPrefetch: true */ '../component/Logo')
+  () =>
+    pMinDelay(
+      import("../component/Logo").catch(err =>
+        console.log("LOADABLE ERROR", err)
+      ),
+      300
+    ),
   {
     fallback: <h2 style={{ color: "white" }}>...Loading</h2>,
   }
@@ -24,13 +32,27 @@ const Home = () => {
     <Layout>
       <SEO />
 
-      <div>Hello world from Lizzygram!</div>
+      <ErrorBoundary>
+        <main>
+          <div>Hello world from Lizzygram!</div>
 
-      <Button onClick={() => setIsShow(prev => !prev)}>
-        Show dynamic content.
-      </Button>
+          <Button onClick={() => setIsShow(prev => !prev)}>
+            Show dynamic content.
+          </Button>
 
-      <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop>
+          <MaterialLink
+            color="secondary"
+            to="/hello"
+            component={Link}
+            variant="body2"
+          >
+            Material link to hello page.
+          </MaterialLink>
+        </main>
+
+        {/* Here place for our modals */}
+        <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop>
+      </ErrorBoundary>
     </Layout>
   );
 };

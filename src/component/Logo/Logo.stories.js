@@ -1,10 +1,9 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import Logo from "./Logo";
-//import NextRouter from "next/router";
+import PureLogo from "./PureLogo";
 
 export default {
-  component: Logo,
+  component: PureLogo,
   title: "Logo",
   decorators: [],
   //decorators: [withKnobs],
@@ -12,10 +11,18 @@ export default {
   excludeStories: /.*Data$/,
 };
 
+const Link = React.forwardRef((props, ref) => {
+  return (
+    <a href={props.to} ref={ref}>
+      {props.children}
+    </a>
+  );
+});
+
 export const Default = () => {
   return (
     <div style={{ margin: "auto", backgroundColor: "white" }}>
-      <Logo />
+      <PureLogo ILink={Link} />
     </div>
   );
 };

@@ -1,15 +1,31 @@
 module.exports = {
+  //stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   stories: ["../src/**/*.stories.js"],
-  addons: ["@storybook/addon-actions", "@storybook/addon-links"],
-  webpackFinal: async (config) => {
-    config.module.rules.push({
+  addons: [
+    "@storybook/addon-actions",
+    "@storybook/addon-links",
+    //"@storybook/addon-essentials",
+  ],
+  /* typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: prop =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
+  }, */
+  webpackFinal: async config => {
+    /*  config.module.rules.push({
       test: /\.(ts|tsx)$/,
       use: [
         {
           loader: require.resolve("babel-loader"),
         },
       ],
-    });
+    });  */
+
     config.module.rules.push({
       test: /\.scss$/,
       use: [
@@ -33,7 +49,7 @@ module.exports = {
       exclude: /node_modules/,
       loader: "graphql-tag/loader",
     });
-    config.resolve.extensions.push(".ts", ".tsx");
+    //config.resolve.extensions.push(".ts", ".tsx");
     return config;
   },
 };

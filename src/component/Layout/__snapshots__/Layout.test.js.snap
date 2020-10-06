@@ -3,31 +3,17 @@
 exports[`Layout Render and props test Snapshots matches snapshot 1`] = `
 <body>
   <div>
-    <div
+    <header
       class="makeStyles-header-1"
     >
       <p
-        style="display: block; text-align: center;"
+        style="display: block; max-width: 1000px; height: 100%; margin: auto; padding-top: 12px; background-color: black; text-align: center;"
       >
         Layout
       </p>
-      <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained"
-        tabindex="0"
-        type="button"
-      >
-        <span
-          class="MuiButton-label"
-        >
-          Click me
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </button>
-    </div>
+    </header>
     <div
-      style="width: 1000px; padding: 20px; margin: auto;"
+      style="max-width: 1000px; padding-top: 65px; margin: auto;"
     />
   </div>
 </body>

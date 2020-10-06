@@ -1,0 +1,21 @@
+.root {
+  .formControl {
+    padding-top: 10px;
+    .formGroup {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      .container {
+        display: flex;
+        margin-right: 5px;
+
+        .skeleton {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

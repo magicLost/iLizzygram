@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   header: {
-    width: "1000px",
-    margin: "auto",
-    backgroundColor: "black",
+    position: "fixed",
+    height: "50px",
+    width: "100%",
     color: "white",
   },
 });
@@ -15,12 +15,23 @@ const Layout = ({ children }) => {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.header}>
-        <p style={{ display: "block", textAlign: "center" }}>Layout</p>
-        <Button variant="contained">Click me</Button>
-      </div>
+      <header className={classes.header}>
+        <p
+          style={{
+            display: "block",
+            maxWidth: "1000px",
+            height: "100%",
+            margin: "auto",
+            paddingTop: "12px",
+            backgroundColor: "black",
+            textAlign: "center",
+          }}
+        >
+          Layout
+        </p>
+      </header>
 
-      <div style={{ width: "1000px", padding: "20px", margin: "auto" }}>
+      <div style={{ maxWidth: "1000px", paddingTop: "65px", margin: "auto" }}>
         {children}
       </div>
     </>
