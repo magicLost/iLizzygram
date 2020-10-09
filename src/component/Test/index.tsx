@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useStaticQuery, graphql } from "gatsby";
+//import { useStaticQuery, graphql } from "gatsby";
 
 interface TestProps {}
 
@@ -15,21 +15,32 @@ const useStyles = makeStyles({
   },
 });
 
+class Controller {
+  hello: string;
+  setState: any;
+
+  useHello = () => {
+    const [state, setState] = useState({ hello: "hello" });
+
+    this.hello = state.hello;
+    this.setState = setState;
+  };
+
+  sayBye = () => {
+    this.setState({ hello: "bye" });
+  };
+}
+
+const controller = new Controller();
+
 const Test = ({}: TestProps) => {
   const classes = useStyles();
 
-  const { site } = useStaticQuery(query);
-
-  const {
-    defaultTitle,
-    titleTemplate,
-    defaultDescription,
-    siteUrl,
-  } = site.siteMetadata;
+  controller.useHello();
 
   return (
     <div className={classes.root}>
-      <h1>Hello</h1>
+      <h1>Hello - {controller.hello}</h1>
 
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic est
@@ -37,21 +48,9 @@ const Test = ({}: TestProps) => {
         beatae recusandae, tempore at harum sed ipsum doloremque repudiandae
         necessitatibus.
       </p>
+      <button onClick={controller.sayBye}>Say Bye</button>
     </div>
   );
 };
 
 export default Test;
-
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        defaultTitle: title
-        titleTemplate
-        defaultDescription: description
-        siteUrl: url
-      }
-    }
-  }
-`;

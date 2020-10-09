@@ -1,7 +1,6 @@
 import { InMemoryCache, ReactiveVar, makeVar } from "@apollo/client";
-import { IPhoto } from "../../server/api/entity/Photo/Photo.model";
 import { Color } from "@material-ui/lab/Alert";
-import { IUserResponseToClient } from "./../../server/api/entity/User/User.model";
+import { IUserResponseToClient, IPhoto } from "./../types";
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {

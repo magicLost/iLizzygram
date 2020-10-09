@@ -1,0 +1,25 @@
+.root {
+  min-width: 350px;
+  //width: 90%;
+  padding: 10px;
+  max-width: 600px;
+  margin: auto;
+
+  .title {
+    padding-bottom: 15px;
+    text-align: center;
+  }
+
+  .element {
+    width: 100%;
+    padding-bottom: 15px;
+  }
+
+  .linearProgress {
+    //padding-top: 6px;
+  }
+
+  .submitButton {
+    padding-top: 6px;
+  }
+}

@@ -1,6 +1,6 @@
 import { regex } from "../../utils/formValidators";
 //import trim from "validator/lib/trim";
-//import isEmail from "validator/lib/isEmail";
+import isEmail from "validator/lib/isEmail";
 import isDate from "validator/lib/isDate";
 
 export const descRules = {
@@ -18,7 +18,7 @@ export const photoFileRules = {
   //required: "А где фота?",
   validate: {
     file: (fileList: FileList) => {
-      console.log(fileList);
+      //console.log(fileList);
       return fileList.length > 0 || "А где фота?";
     },
   },
@@ -28,7 +28,7 @@ export const dateRules = {
   required: "Укажите в какое время сделана фота, хотя бы примерно, пожалуйста.",
   validate: {
     date: (value: any) => {
-      console.log("isDate", value, isDate(value));
+      //console.log("isDate", value, isDate(value));
       const minDate = new Date("2018-07-07");
       const maxDate = new Date();
       const date = new Date(value);
@@ -45,7 +45,7 @@ export const dateRules = {
 
 export const tagsRules = {
   validate: (tags: { [name: string]: boolean }) => {
-    console.log("tags required", tags);
+    //console.log("tags required", tags);
 
     let isTap = false;
 
