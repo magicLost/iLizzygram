@@ -4,7 +4,7 @@ import IModal from ".";
 
 export default {
   component: IModal,
-  title: "IModal",
+  title: "Components/IModal",
   decorators: [],
   //decorators: [withKnobs],
   // Our exports that end in "Data" are not stories.

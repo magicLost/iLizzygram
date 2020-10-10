@@ -15,19 +15,18 @@ import { Typography } from "@material-ui/core";
 /* import TextField from "@material-ui/core/TextField";
 import DatePicker from "../../../component/FormElements/DatePicker";
  */
-import { useAddPhoto } from "./AddPhotoForm.hook";
+import { useAddPhoto } from "./hook";
 
 import { photoFileRules, descRules } from "./../Photo.rules";
-import { IUploadPhotoResponseToClient } from "./AddPhotoForm.hook";
+import { IUploadPhotoResponseToClient } from "./hook";
 import AddEditPhotoFormWidget from "../../../component/AddEditPhotoFormWidget";
 
 interface AddPhotoFormProps {
   title?: string;
-  onSuccessLogin?: (
+  onSuccessUpload?: (
     uploadPhotoData: IUploadPhotoResponseToClient
   ) => void | undefined;
-  onLoginError?: () => void | undefined;
-  defaultTagsIds?: string[];
+  onUploadError?: () => void | undefined;
 }
 
 /*const useStyles = makeStyles({
@@ -48,9 +47,8 @@ const getTitle = (title?: string) => {
 
 const AddPhotoForm = ({
   title,
-  defaultTagsIds,
-  onSuccessLogin,
-  onLoginError,
+  onSuccessUpload,
+  onUploadError,
 }: AddPhotoFormProps) => {
   //const classes = useStyles();
   const titleElement = getTitle(title);
@@ -68,7 +66,7 @@ const AddPhotoForm = ({
     tagsData,
     tagsLoading,
     tagsQueryError,
-  } = useAddPhoto(onSuccessLogin, onLoginError, defaultTagsIds);
+  } = useAddPhoto(onSuccessUpload, onUploadError);
 
   return (
     <AddEditPhotoFormWidget

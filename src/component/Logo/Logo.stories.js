@@ -4,7 +4,7 @@ import PureLogo from "./PureLogo";
 
 export default {
   component: PureLogo,
-  title: "Logo",
+  title: "Components/Logo",
   decorators: [],
   //decorators: [withKnobs],
   // Our exports that end in "Data" are not stories.

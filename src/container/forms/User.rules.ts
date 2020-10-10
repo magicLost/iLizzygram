@@ -39,7 +39,6 @@ export const emailUseFormValidation = {
 };
 
 /* PASSWORD */
-
 export const passwordMinLength = 8;
 export const passwordMaxLength = 254;
 export const passwordRequiredMessage = "Пожалуйста, придумайте пароль.";

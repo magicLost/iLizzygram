@@ -2,9 +2,9 @@ import gql from "graphql-tag";
 import { useResetStore } from "../../../hooks/photos/useResetStore";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
-import { IPhoto } from "./../../../types";
+import { IPhoto } from "../../../types";
 import { useEffect } from "react";
-import { dateRules, tagsRules } from "./../Photo.rules";
+import { dateRules, tagsRules } from "../Photo.rules";
 //import { hideAddForm } from "../../../apolloClient/cache.controller";
 import { useTags } from "../../../hooks/photos/useTags";
 
@@ -28,11 +28,43 @@ export const UPLOAD_PHOTO = gql`
   }
 `;
 
+export const registerTags = (
+  setValue: any,
+  clearError: any,
+  watch: any,
+  defaultTagsIds?: string[]
+) => {
+  // tagsState = { tag_id: boolean } - in input checkbox we use name={tag._id}
+
+  const tagsState = watch("tags");
+
+  const onTagsCheckboxChange = (event: any) => {
+    //console.log("handleDateChange", event.target);
+    const newState = {
+      ...tagsState,
+      [event.target.name]: event.target.checked,
+    };
+    clearError("tags");
+    setValue("tags", newState);
+  };
+
+  const { data: tagsData, loading: tagsLoading, error: queryError } = useTags(
+    initState => setValue("tags", initState),
+    defaultTagsIds
+  );
+
+  return { onTagsCheckboxChange, tagsState, tagsData, tagsLoading, queryError };
+};
+
 export const useRegisterFormElements = (
   register: any,
   setValue: any,
   clearError: any,
-  watch: any
+  watch: any,
+
+  dateRules?: { [key: string]: any },
+  tagsRules?: { [key: string]: any },
+  defaultTagsIds?: string[]
 ) => {
   useEffect(() => {
     register({ name: "date", type: "custom" }, dateRules);
@@ -49,30 +81,34 @@ export const useRegisterFormElements = (
   const dateValue = watch("date");
 
   // tagsState = { tag_id: boolean } - in input checkbox we use name={tag._id}
-  const tagsState = watch("tags");
+  /* const tagsState = watch("tags");
 
   const onTagsCheckboxChange = (event: any) => {
     //console.log("handleDateChange", event.target);
-    //const newState = { ...state, [event.target.name]: event.target.checked };
     const newState = {
       ...tagsState,
       [event.target.name]: event.target.checked,
     };
     clearError("tags");
     setValue("tags", newState);
-    //setState(newState);
   };
 
+  const { data: tagsData, loading: tagsLoading, error: queryError } = useTags(
+    initState => setValue("tags", initState),
+    defaultTagsIds
+  ); */
+
   const {
-    data: tagsData,
-    loading: tagsLoading,
-    error: queryError,
-  } = useTags(initState => setValue("tags", initState));
+    onTagsCheckboxChange,
+    tagsState,
+    tagsData,
+    tagsLoading,
+    queryError,
+  } = registerTags(setValue, clearError, watch, defaultTagsIds);
 
   return {
     onDateChange,
     dateValue,
-
     onTagsCheckboxChange,
     tagsState,
     tagsData,
@@ -82,11 +118,10 @@ export const useRegisterFormElements = (
 };
 
 export const useAddPhoto = (
-  onSuccessLogin?: (
+  onSuccessUpload?: (
     uploadPhotoData: IUploadPhotoResponseToClient
   ) => void | undefined,
-  onLoginError?: () => void | undefined,
-  defaultTagsIds?: string[]
+  onUploadError?: () => void | undefined
 ) => {
   const {
     register,
@@ -108,44 +143,14 @@ export const useAddPhoto = (
     tagsData,
     tagsLoading,
     queryError,
-  } = useRegisterFormElements(register, setValue, clearError, watch);
-
-  /*  useEffect(() => {
-    register({ name: "date", type: "custom" }, dateRules);
-    register({ name: "tags", type: "custom" }, tagsRules);
-    //register({ name: "date" }, {});
-  }, [register]);
-
-  const onDateChange = date => {
-    console.log("onDateChange", date);
-    setValue("date", date);
-    clearError("date");
-  };
-
-  const dateValue = watch("date");
-
-  // tagsState = { tag_id: boolean } - in input checkbox we use name={tag._id}
-  const tagsState = watch("tags");
-
-  const onTagsCheckboxChange = (event: any) => {
-    //console.log("handleDateChange", event.target);
-    //const newState = { ...state, [event.target.name]: event.target.checked };
-    const newState = {
-      ...tagsState,
-      [event.target.name]: event.target.checked,
-    };
-    clearError("tags");
-    setValue("tags", newState);
-    //setState(newState);
-  };
-
-  const {
-    data: tagsData,
-    loading: tagsLoading,
-    error: queryError,
-  } = useTags(initState => setValue("tags", initState)); */
-
-  //END REGISTER
+  } = useRegisterFormElements(
+    register,
+    setValue,
+    clearError,
+    watch,
+    dateRules,
+    tagsRules
+  );
 
   const { resetStore } = useResetStore();
 
@@ -157,12 +162,12 @@ export const useAddPhoto = (
       resetStore();
       //hide();
       //hideAddForm();
-      if (onSuccessLogin) onSuccessLogin(data);
+      if (onSuccessUpload) onSuccessUpload(data);
       console.log("[COMPLETE]");
     },
     onError: err => {
       /*show error alert*/
-      if (onLoginError) onLoginError();
+      if (onUploadError) onUploadError();
       console.error("BAD FILE UPLOAD", err);
     },
   });

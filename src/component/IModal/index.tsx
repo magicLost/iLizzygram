@@ -30,6 +30,8 @@ const useStyles = makeStyles({
     },
     overflow: "auto",
     maxHeight: "80%",
+    backgroundColor: "white",
+    padding: "50px 25px 25px",
   },
   /* content: {
     minWidth: "300px",

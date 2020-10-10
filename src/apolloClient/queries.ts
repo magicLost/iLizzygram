@@ -19,6 +19,12 @@ export const MODAL = gql`
   }
 `;
 
+export const AUTH = gql`
+  query getAuth {
+    auth @client
+  }
+`;
+
 /* export const HIDE_ALERT = gql`
   mutation hideAlert {
     hideAlert @client
