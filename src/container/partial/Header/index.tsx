@@ -12,13 +12,18 @@ import NavUserBtnWithMenu from "../../../component/NavUserBtnWithMenu";
 import FaceIcon from "@material-ui/icons/Face";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IUserResponseToClient } from "../../../types";
-import { showLoginForm } from "../../../apolloClient/cache.controller";
+//import { showLoginForm } from "../../../apolloClient/cache.controller";
+import { IGlobalState } from "../../../store/types";
+import { showLoginFormAC } from "../../../store";
+import { logoutAC } from "../../../auth";
+import { connect } from "react-redux";
 
 interface IHeaderProps {
   Logo: React.FunctionComponent;
-  user: IUserResponseToClient | undefined;
-  loading: boolean;
-  logout: any;
+  user?: IUserResponseToClient | undefined;
+  loading?: boolean;
+  showLoginForm?: () => void;
+  logout?: () => void;
 }
 
 const useStyles = makeStyles({
@@ -46,6 +51,7 @@ const getAuthFragment = (
   user: IUserResponseToClient | undefined,
   loading: boolean,
   classes: any,
+  showLoginForm: () => void,
   onLogout: () => void
 ) => {
   if (loading) {
@@ -63,7 +69,7 @@ const getAuthFragment = (
             color="primary"
             startIcon={<FaceIcon />}
           >
-            {user.name}
+            {user.email}
           </Button>
         }
         onLogOutUser={onLogout}
@@ -84,10 +90,22 @@ const getAuthFragment = (
   }
 };
 
-export const Header = ({ Logo, user, loading, logout }: IHeaderProps) => {
+export const Header = ({
+  Logo,
+  user,
+  loading,
+  showLoginForm,
+  logout,
+}: IHeaderProps) => {
   const classes = useStyles();
 
-  const authFragment = getAuthFragment(user, loading, classes, logout);
+  const authFragment = getAuthFragment(
+    user,
+    loading,
+    classes,
+    showLoginForm,
+    logout
+  );
 
   console.log("[RENDER HEADER]", user, loading);
 
@@ -104,4 +122,21 @@ export const Header = ({ Logo, user, loading, logout }: IHeaderProps) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state: IGlobalState) => {
+  return {
+    user: state.auth.user,
+    loading: state.auth.authLoading,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showLoginForm: () => dispatch(showLoginFormAC()),
+    logout: () => {
+      console.log("logout");
+      dispatch(logoutAC());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

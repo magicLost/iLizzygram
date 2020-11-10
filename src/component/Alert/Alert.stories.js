@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { action } from "@storybook/addon-actions";
-import Alert from "./Alert";
+import { Alert } from ".";
 import Button from "@material-ui/core/Button";
 
 export default {

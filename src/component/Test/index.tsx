@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 //import { useStaticQuery, graphql } from "gatsby";
 
@@ -15,7 +15,33 @@ const useStyles = makeStyles({
   },
 });
 
-class Controller {
+abstract class ABaseController {
+  static useBasic<T, U>(classType: new (args: U) => T, args: U) {
+    const isInitRef = useRef(false);
+    const ctrlRef: React.MutableRefObject<T | undefined> = useRef();
+
+    if (isInitRef.current === false) {
+      ctrlRef.current = new classType(args);
+      isInitRef.current = true;
+    }
+
+    return ctrlRef.current;
+  }
+
+  /* static useBasic = () => {
+    const isInitRef = useRef(false);
+    const ctrlRef: React.MutableRefObject<Controller | undefined> = useRef();
+
+    if (isInitRef.current === false) {
+      ctrlRef.current = new Controller();
+      isInitRef.current = true;
+    }
+
+    return ctrlRef.current;
+  }; */
+}
+
+class Controller extends ABaseController {
   hello: string;
   setState: any;
 
@@ -29,18 +55,49 @@ class Controller {
   sayBye = () => {
     this.setState({ hello: "bye" });
   };
+
+  static useInit = (count: number) => {
+    const countRef = useRef(count);
+
+    const controller = Controller.useBasic<Controller, undefined>(
+      Controller,
+      undefined
+    );
+
+    controller.useHello();
+
+    return { controller, count: countRef.current };
+    /* const isInitRef = useRef(false);
+    const ctrlRef: React.MutableRefObject<Controller | undefined> = useRef();
+
+    if (isInitRef.current === false) {
+      ctrlRef.current = new Controller();
+      isInitRef.current = true;
+    }
+
+    ctrlRef.current.useHello();
+
+    return ctrlRef.current; */
+  };
 }
 
-const controller = new Controller();
+//const controller = new Controller();
+let count = 0;
 
 const Test = ({}: TestProps) => {
   const classes = useStyles();
 
-  controller.useHello();
+  count++;
+
+  const { controller, count: cnt } = Controller.useInit(count);
+
+  //controller.useHello();
 
   return (
     <div className={classes.root}>
-      <h1>Hello - {controller.hello}</h1>
+      <h1>
+        Hello - {cnt} - {controller.hello}
+      </h1>
 
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic est

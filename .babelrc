@@ -1,9 +1,5 @@
 {
-  "plugins": [
-    "babel-plugin-graphql-tag",
-    "@babel/plugin-syntax-dynamic-import",
-    "@loadable/babel-plugin"
-  ],
+  "plugins": ["@babel/plugin-syntax-dynamic-import", "@loadable/babel-plugin"],
   "presets": [
     [
       "babel-preset-gatsby",

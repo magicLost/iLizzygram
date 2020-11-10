@@ -46,7 +46,7 @@ const UploadButton = ({
       <label htmlFor="contained-button-file">
         <Button
           variant="contained"
-          color="default"
+          color="secondary"
           component="span"
           startIcon={<CloudUploadIcon />}
           disabled={disabled}

@@ -1,22 +1,17 @@
 import React, { useEffect } from "react";
 import { action } from "@storybook/addon-actions";
-import TagsCheckbox, { getCheckboxes, TAGS } from ".";
+import { TagsCheckbox, getCheckboxes, TAGS } from ".";
 import classes from "./TagsCheckbox.module.scss";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm } from "react-hook-form";
-import { tagsRules } from "../../../container/forms/Photo.rules";
-import { MockedProvider } from "@apollo/client/testing";
+import { tagsRules } from "../../../photos/form/Photo.rules";
+//import { MockedProvider } from "@apollo/client/testing";
 //import { useQuery, ApolloError } from "@apollo/client";
-import { useTags } from "../../../hooks/photos/useTags";
-import {
-  tagsData,
-  mockQueriesData,
-  state,
-  defaultTagsIds,
-} from "../../../hooks/photos/useTags.mock";
+//import { useTags } from "../../../hooks/photos/useTags";
+import { tagsData, state as initTagsState, defaultTagsIds } from "./__mock";
 
 export default {
   component: TagsCheckbox,
@@ -38,10 +33,14 @@ const Form = () => {
     register,
     handleSubmit,
     setValue,
-    clearError,
+    clearErrors,
     watch,
     errors,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      tags: initTagsState,
+    },
+  });
 
   useEffect(() => {
     register({ name: "tags", type: "custom" }, tagsRules);
@@ -57,27 +56,36 @@ const Form = () => {
       ...tagsState,
       [event.target.name]: event.target.checked,
     };
-    clearError("tags");
+    clearErrors("tags");
     setValue("tags", newState);
     //setState(newState);
   };
 
-  const { data, loading, error: queryError } = useTags(initState =>
-    setValue("tags", initState)
-  );
-
-  console.log("RENDER TAGS STORIES FORM", data ? true : undefined, loading);
-
+  console.log("RENDER TAGS STORIES FORM");
+  /* items,
+  queryError,
+  loading,
+  fetchData,
+  //
+  itemsState,
+  onChange,
+  disabled,
+  error,
+  setInitState,
+  defaultTagsIds, */
   return (
     <form onSubmit={handleSubmit(data => console.log("SUBMIT", data))}>
       <TagsCheckbox
+        queryError={false}
+        fetchData={() => console.log("fetch data")}
         label={"Choose fucking tags:"}
-        items={data ? data.tags : data}
+        items={tagsData}
         itemsState={tagsState}
-        loading={loading}
-        queryError={queryError}
+        loading={false}
         onChange={onCheckboxChange}
         error={errors.tags}
+        setInitState={() => console.log("setInitState")}
+        defaultTagsIds={defaultTagsIds}
         disabled={false}
       />
       <br />
@@ -87,17 +95,13 @@ const Form = () => {
 };
 
 export const Default = () => {
-  return (
-    <MockedProvider mocks={mockQueriesData} addTypename={true}>
-      <Form />
-    </MockedProvider>
-  );
+  return <Form />;
 };
 
 export const LoadingTags = () => {
   const checkboxes = getCheckboxes(
     () => {},
-    state,
+    initTagsState,
     true,
     null,
     false,
@@ -124,7 +128,7 @@ export const LoadingTags = () => {
 export const Tags = () => {
   const checkboxes = getCheckboxes(
     () => {},
-    state,
+    initTagsState,
     false,
     null,
     false,

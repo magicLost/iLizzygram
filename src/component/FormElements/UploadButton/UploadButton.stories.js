@@ -2,7 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { useForm } from "react-hook-form";
 import UploadButton from ".";
-import { photoFileRules } from "../../../container/forms/Photo.rules";
+import { photoFileRules } from "../../../photos/form/Photo.rules";
 
 export default {
   component: UploadButton,

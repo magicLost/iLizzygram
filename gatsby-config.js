@@ -5,6 +5,7 @@
  */
 
 const LoadablePlugin = require("@loadable/webpack-plugin");
+
 exports.onCreateWebpackConfig = ({
   stage,
   getConfig,

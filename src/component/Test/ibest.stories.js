@@ -15,6 +15,10 @@ export const Default = () => {
   return (
     <div style={{ margin: "auto", backgroundColor: "white" }}>
       <Test />
+      <br />
+      <hr />
+      <br />
+      <Test />
     </div>
   );
 };

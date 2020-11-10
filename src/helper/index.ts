@@ -1,0 +1,1 @@
+export { getInitTagsState } from "./form";

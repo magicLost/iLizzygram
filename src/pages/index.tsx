@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
-import Layout from "../component/Layout";
+import Layout from "../container/partial/Layout";
 import IconButton from "@material-ui/core/IconButton";
 import AdbIcon from "@material-ui/icons/Adb";
 import Button from "@material-ui/core/Button";
@@ -10,9 +10,10 @@ import { Link } from "gatsby";
 import Backdrop from "@material-ui/core/Backdrop";
 import ErrorBoundary from "../component/ErrorBoundary";
 import SEO from "../component/SEO";
+import Logo from "../component/Logo";
 
-const LogoLoadable = loadable(
-  //import(/* webpackPrefetch: true */ '../component/Logo')
+/* const LogoLoadable = loadable(
+  //import(/* webpackPrefetch: true / '../component/Logo')
   () =>
     pMinDelay(
       import("../component/Logo").catch(err =>
@@ -24,12 +25,12 @@ const LogoLoadable = loadable(
     fallback: <h2 style={{ color: "white" }}>...Loading</h2>,
   }
 );
-
+ */
 const Home = () => {
   const [isShow, setIsShow] = useState(false);
 
   return (
-    <Layout>
+    <Layout Logo={Logo}>
       <SEO />
 
       <ErrorBoundary>
@@ -51,7 +52,7 @@ const Home = () => {
         </main>
 
         {/* Here place for our modals */}
-        <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop>
+        {/*  <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop> */}
       </ErrorBoundary>
     </Layout>
   );

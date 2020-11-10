@@ -1,6 +1,6 @@
 import React from "react";
 //import { action } from "@storybook/addon-actions";
-import Header from ".";
+import { Header, test } from ".";
 //import { MockedProvider } from "@apollo/client/testing";
 //import { LOGOUT } from "./../../../hooks/auth/auth.queries";
 //import { cache, authVar } from "../../../apolloClient/cache";

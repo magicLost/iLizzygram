@@ -10,7 +10,7 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { useForm } from "react-hook-form";
-import { dateRules } from "../../../container/forms/Photo.rules";
+import { dateRules } from "../../../photos/form/Photo.rules";
 
 export default {
   component: DatePicker,

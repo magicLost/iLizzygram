@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { action } from "@storybook/addon-actions";
 import { useForm } from "react-hook-form";
 
-import { passwordUseFormValidation } from "../../../container/forms/User.rules";
+import { passwordUseFormValidation } from "../../../photos/form/User.rules";
+
 import PasswordInput from ".";
 
 export default {

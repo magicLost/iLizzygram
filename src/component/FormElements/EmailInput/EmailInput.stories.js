@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { action } from "@storybook/addon-actions";
 import { useForm } from "react-hook-form";
 import EmailInput from ".";
-import { emailUseFormValidation } from "../../../container/forms/User.rules";
+import { emailUseFormValidation } from "../../../photos/form/User.rules";
 
 export default {
   component: EmailInput,
