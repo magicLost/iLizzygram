@@ -31,6 +31,8 @@
     "date-fns": "^2.16.1",
     "firebase": "^7.24.0",
     "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
+    "firebase-tools": "^8.16.2",
     "gatsby": "^2.24.85",
     "lodash.intersection": "^4.4.0",
     "lodash.isequal": "^4.5.0",

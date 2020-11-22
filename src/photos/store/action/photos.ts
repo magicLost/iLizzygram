@@ -147,7 +147,7 @@ export const addPhotoToFirestoreAC = (
 
       //SEND PHOTO FILE TO EXPRESS
       /*  const formData = new FormData();
-      formData.append("doc_id", result.id);
+      formData.append("id", result.id);
       formData.append("file", photoFormData.photoFile[0]);
 
       const res = await axios.post(addPhotoUrl, formData, {
