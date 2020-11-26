@@ -39,10 +39,10 @@ export const emailUseFormValidation = {
 };
 
 /* PASSWORD */
-export const passwordMinLength = 8;
+export const passwordMinLength = 6;
 export const passwordMaxLength = 254;
 export const passwordRequiredMessage = "Пожалуйста, придумайте пароль.";
-export const passwordMinLengthMessage = "Минимальная длина пароля 8 символов.";
+export const passwordMinLengthMessage = "Минимальная длина пароля 6 символов.";
 export const passwordMaxLengthMessage = "Что? Пароль слишком длинный...";
 
 export const passwordUseFormValidation = {

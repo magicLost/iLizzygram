@@ -27,6 +27,7 @@ export interface IAuthState {
 
 export interface IAuthAction extends Action<TAuthActionTypes> {
   user?: IUserResponseToClient;
+  isEditor?: boolean;
 }
 
 // FORM

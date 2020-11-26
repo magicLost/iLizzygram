@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { action } from "@storybook/addon-actions";
-import AddPhotoForm from "./form/AddPhotoForm";
+import AddPhotoForm from "../form/AddPhotoForm";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -9,12 +9,12 @@ import {
   fetchTagsAC,
   modalReducer,
   tagsReducer,
-} from "./../store";
+} from "../../store";
 import {
   allPhotosRequestSuccessAC,
   allPhotosRequestErrorAC,
   fetchPhotosAC,
-} from "./store/action/photos";
+} from "../store/action/photos";
 //import { firestore, initializeApp, apps } from "firebase/app";
 import "firebase/firebase-firestore";
 //import { firebaseConfig } from "../config";
@@ -23,19 +23,19 @@ import {
   generateAndSavePhotosData,
   resFirestoreToMapObj,
   updatePhotosWithTagsArrField,
-} from "./helper";
+} from "../helper";
 import Button from "@material-ui/core/Button";
 //import { useSubscribe, reSubscribe, subscribe } from "./store/hook";
 //import { usePhotos } from "./store/ihook";
 //import WallOfPhotos from "../container/WallOfPhotos";
-import { photoReducer, searchReducer } from ".";
-import Photos from "./container/Photos";
-import Alert from "./../component/Alert";
-import {
-  photosCollection,
-  tagsCollection,
-  db,
-} from "../container/ReduxWrapper";
+import { photoReducer, searchReducer } from "..";
+import Photos from "../container/Photos";
+import Alert from "../../component/Alert";
+import { db } from "../../container/ReduxWrapper";
+import Tabs from "../../component/Tabs";
+import GenerateTab from "./GenerateTab";
+import ShowDataTab from "./ShowDataTab";
+import { authReducer, useInit, authAC } from "../../auth";
 
 export default {
   component: AddPhotoForm,
@@ -95,7 +95,7 @@ const tagsCollection = db.collection("tags"); */
 const reducer = combineReducers({
   modal: modalReducer,
   alert: alertReducer,
-  //auth: authReducer,
+  auth: authReducer,
   search: searchReducer,
   tags: tagsReducer,
   photos: photoReducer,
@@ -122,81 +122,33 @@ const errorPhotos = () => store.dispatch(allPhotosRequestErrorAC()); */
 export const Default = () => {
   //console.log("STORE", store.getState();
 
+  useInit(
+    user => {
+      store.dispatch(authAC(user));
+    },
+    err => {
+      console.log("On auth subscribe error", err);
+    },
+    () => {
+      console.log("On auth subscribe successs");
+    }
+  );
+
   return (
     <Provider store={store}>
       <>
-        <div style={{ padding: "20px", borderBottom: "2px solid gray" }}>
-          <h4>Generate and save fake data.</h4>
-          <Button
-            onClick={async () => {
-              const tags = await getAll(tagsCollection);
+        <Tabs titles={["Photos", "Generate data", "Show data"]}>
+          <>
+            <div style={{ padding: "20px", border: "2px solid cyan" }}>
+              <Photos />
+            </div>
+            <Alert />
+          </>
 
-              await generateAndSavePhotosData(photosCollection, tags);
+          <GenerateTab />
 
-              console.log("SUCCESS GENERATE AND SAVE PHOTOS");
-            }}
-          >
-            Generate and save photos
-          </Button>
-        </div>
-        <div
-          style={{
-            padding: "20px",
-            borderBottom: "2px solid gray",
-            marginBottom: "20px",
-          }}
-        >
-          <h4>Show firestore data.</h4>
-          <Button
-            onClick={async () => {
-              const tags = await getAll(tagsCollection);
-              console.log("[FIRESTORE] TAGS", tags);
-            }}
-          >
-            Get all tags to console.
-          </Button>
-
-          <Button
-            onClick={async () => {
-              const photos = await getAll(photosCollection);
-              console.log("[FIRESTORE] PHOTOS", photos);
-            }}
-          >
-            Get all photos to console.
-          </Button>
-
-          <Button
-            onClick={async () => {
-              /* const photos = await updatePhotosWithTagsArrField(
-                db.collection("photos")
-              ); */
-
-              const result = await photosCollection
-                .where("tags.Ql2r2DFzzjZnzP2adh9Z", "==", true)
-                .where("yearsOld", "==", 0)
-                .orderBy("date")
-                .limit(100)
-                .get(); //orderBy("_timestamp")
-              console.log("SUCCESS GET");
-              const res = new Map();
-
-              result.docs.map(item => {
-                res.set(item.id, item.data());
-              });
-
-              console.log(res);
-
-              //const photosMap = resFirestoreToMapObj(photos);
-              //console.log("[FIRESTORE] TEST", photosMap);
-            }}
-          >
-            Test firestore.
-          </Button>
-        </div>
-        <div style={{ padding: "20px", border: "2px solid cyan" }}>
-          <Photos />
-        </div>
-        <Alert />
+          <ShowDataTab />
+        </Tabs>
       </>
     </Provider>
   );

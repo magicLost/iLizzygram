@@ -12,6 +12,7 @@ export const useInit = (
     const unsubscribe = firebase.auth().onAuthStateChanged(
       user => {
         if (user) {
+          //console.log("AUTH SUCCESS", user);
           // User is signed in.
           /*  var displayName = user.displayName;
             var email = user.email;

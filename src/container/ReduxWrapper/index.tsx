@@ -7,7 +7,11 @@ import { photoReducer } from "./../../photos";
 import { authReducer } from "./../../auth";
 import { firestore, initializeApp, apps } from "firebase/app";
 import "firebase/firebase-firestore";
-import { firebaseConfig } from "../../config";
+import {
+  firebaseConfig,
+  photosCollectionName,
+  tagsCollectionName,
+} from "../../config";
 
 //CONFIG FIREBASE
 
@@ -15,8 +19,8 @@ if (!apps.length) initializeApp(firebaseConfig);
 
 export const db = firestore();
 
-export const photosCollection = db.collection("photos");
-export const tagsCollection = db.collection("tags");
+export const photosCollection = db.collection(photosCollectionName);
+export const tagsCollection = db.collection(tagsCollectionName);
 
 // ENABLE CACHE https://firebase.google.com/docs/firestore/manage-data/enable-offline?authuser=0
 /* firestore().enablePersistence()

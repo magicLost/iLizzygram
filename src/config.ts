@@ -1,5 +1,9 @@
 import { getLizzyYearsOld } from "./utils";
 
+export const photosCollectionName = "photos";
+export const tagsCollectionName = "tags";
+export const usersCollectionName = "users";
+
 export const authLocalStorageKey = "lg_super_puper_user";
 
 export const addPhotoUrl = "http://localhost:8000/api/add";

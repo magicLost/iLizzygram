@@ -110,7 +110,7 @@ export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
 
       const querySnapshot = await query.get();
 
-      //console.log("SUCCESS", data.docs.length);
+      console.log("PHOTOS SUCCESS", querySnapshot.size);
       //const photoData: TPhotoData = new Map();
 
       const { hasNextPage, nextPageDocRef, photos } = makeNewPhotoStateItems(
@@ -133,12 +133,14 @@ export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
 
 export const addPhotoToFirestoreAC = (
   photoFormData: IAddPhotoFormData,
+  userUID: string,
   onSuccess?: any,
   onError?: any
 ) => {
   return async dispatch => {
     try {
       const photo = makeAddPhotoData(photoFormData);
+      photo.addedByUserUID = userUID;
       dispatch(addPhotoStartRequestAC());
 
       //SAVE PHOTO DATA TO FIRESTORE

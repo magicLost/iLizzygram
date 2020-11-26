@@ -6,6 +6,10 @@ export interface IUserResponseToClient {
   uid: string;
 }
 
+export interface IAuthUser extends IUserResponseToClient {
+  isEditor: boolean;
+}
+
 /* export type IFirestoreData = Map<string, any>; */
 
 export interface IUser extends IUserResponseToClient {

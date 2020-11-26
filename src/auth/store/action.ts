@@ -1,10 +1,12 @@
-import firebase from "firebase/app";
+import * as firebase from "firebase/app";
 import "firebase/auth";
 import { IAuthAction } from "./../types";
-import { IUserResponseToClient } from "./../../types";
+import { IAuthUser } from "./../../types";
 import { ILoginFormData } from "../types";
+import { db } from "./../../container/ReduxWrapper";
+import { usersCollectionName } from "./../../config";
 
-export const authAC = (user: IUserResponseToClient): IAuthAction => {
+export const authAC = (user: IAuthUser): IAuthAction => {
   return {
     type: "AUTH",
     user,
@@ -17,9 +19,10 @@ export const loginRequestAC = (): IAuthAction => {
   };
 };
 
-export const loginRequestSuccessAC = (): IAuthAction => {
+export const loginRequestSuccessAC = (isEditor: boolean): IAuthAction => {
   return {
     type: "LOGIN_REQUEST_SUCCESS",
+    isEditor,
   };
 };
 
@@ -70,15 +73,26 @@ export const loginAC = (
   onError?: Function,
   onSuccess?: Function
 ) => {
-  return async dispatch => {
+  return async (dispatch: any) => {
     try {
       dispatch(loginRequestAC());
 
       //TODO request to auth to firebase
       const { email, password } = data;
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      const userData = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
 
-      dispatch(loginRequestSuccessAC());
+      let isEditor = false;
+      if (userData) {
+        const res = await db
+          .collection(usersCollectionName)
+          .doc(userData.user.uid)
+          .get();
+        isEditor = res.exists;
+      }
+
+      dispatch(loginRequestSuccessAC(isEditor));
       if (onSuccess) onSuccess();
     } catch (err) {
       if (onError) onError(err.code);
@@ -88,7 +102,7 @@ export const loginAC = (
 };
 
 export const logoutAC = (onError?: Function, onSuccess?: Function) => {
-  return async dispatch => {
+  return async (dispatch: any) => {
     try {
       dispatch(logoutRequestAC());
 
@@ -110,7 +124,7 @@ export const forgetPassAC = (
   onError?: Function,
   onSuccess?: Function
 ) => {
-  return async dispatch => {
+  return async (dispatch: any) => {
     try {
       dispatch(forgetPassRequestAC());
 

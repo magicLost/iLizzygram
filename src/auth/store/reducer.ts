@@ -34,6 +34,7 @@ const reducer: Reducer<IAuthState, IAuthAction> = (
     case "LOGIN_REQUEST_SUCCESS":
       return {
         ...state,
+        user: { ...state.user, isEditor: action.isEditor },
         loginLoading: false,
         loginError: false,
       };

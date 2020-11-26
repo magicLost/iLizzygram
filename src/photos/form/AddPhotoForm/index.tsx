@@ -19,8 +19,10 @@ import { showAlertAC } from "../../../store";
 
 interface IAddPhotoFormProps {
   title?: string;
+  userUID?: string;
   fetchPhoto?: (
     photoFormData: IAddPhotoFormData,
+    userUID: string,
     onSuccess?: any,
     onError?: any
   ) => void;
@@ -46,6 +48,7 @@ export const registerInfo = [
 
 export const AddPhotoForm = ({
   title,
+  userUID,
   fetchPhoto,
   showAlert,
   onSuccessUpload,
@@ -59,7 +62,7 @@ export const AddPhotoForm = ({
   };
 
   const submit = (formData: IAddPhotoFormData) => {
-    fetchPhoto(formData, onSuccessUpload, onError);
+    fetchPhoto(formData, userUID, onSuccessUpload, onError);
   };
 
   const uploadPhotoFormData = useUploadPhotoForm<IAddPhotoFormData>(
@@ -81,6 +84,7 @@ export const AddPhotoForm = ({
 const mapStateToProps = (state: IGlobalState) => {
   return {
     tagsData: state.tags.tags,
+    userUID: state.auth.user.uid,
   };
 };
 
@@ -90,10 +94,13 @@ const mapDispatchToProps = dispatch => {
       dispatch(showAlertAC(message, type)),
     fetchPhoto: (
       photoFormData: IAddPhotoFormData,
+      userUID: string,
       onSuccess?: any,
       onError?: any
     ) => {
-      dispatch(addPhotoToFirestoreAC(photoFormData, onSuccess, onError));
+      dispatch(
+        addPhotoToFirestoreAC(photoFormData, userUID, onSuccess, onError)
+      );
     },
   };
 };
