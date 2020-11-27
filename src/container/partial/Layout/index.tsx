@@ -2,21 +2,21 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Header from "../Header";
 import classes from "./Layout.module.scss";
-import IModal from "../../../component/IModal";
-import LoginForm from "../../../auth/form/LoginForm";
+//import IModal from "../../../component/IModal";
+//import LoginForm from "../../../auth/form/LoginForm";
 import Alert from "../../../component/Alert";
-import { hideLoginFormAC, hideForgetPassFormAC } from "../../../store";
-import { IGlobalState } from "../../../store/types";
-import { connect } from "react-redux";
-import ForgetPassForm from "../../../auth/form/ForgetPassForm";
+//import { hideLoginFormAC, hideForgetPassFormAC } from "../../../store";
+//import { IGlobalState } from "../../../store/types";
+//import { connect } from "react-redux";
+//import ForgetPassForm from "../../../auth/form/ForgetPassForm";
 
 interface LayoutProps {
   Logo: React.FunctionComponent;
   children: JSX.Element | JSX.Element[];
-  isShowLoginForm?: boolean;
-  isShowForgetPassForm?: boolean;
-  hideLoginForm?: () => void;
-  hideForgetPassForm?: () => void;
+  //isShowLoginForm?: boolean;
+  //isShowForgetPassForm?: boolean;
+  //hideLoginForm?: () => void;
+  //hideForgetPassForm?: () => void;
 }
 
 //const useStyles = makeStyles({});
@@ -24,42 +24,42 @@ interface LayoutProps {
 export const Layout = ({
   Logo,
   children,
-  isShowLoginForm,
-  isShowForgetPassForm,
-  hideLoginForm,
-  hideForgetPassForm,
-}: LayoutProps) => {
-  const onSuccessLogin = () => {
+}: //isShowLoginForm,
+//isShowForgetPassForm,
+//hideLoginForm,
+//hideForgetPassForm,
+LayoutProps) => {
+  /* const onSuccessLogin = () => {
     hideLoginForm();
   };
 
   const onSuccessEmail = () => {
     hideForgetPassForm();
-  };
+  }; */
 
   console.log("[RENDER LAYOUT]");
 
   return (
     <>
-      <Header Logo={Logo} logout={() => console.log("log out")} />
+      <Header Logo={Logo} />
       <Container component={"main"} className={classes.container} maxWidth="lg">
         {children}
       </Container>
 
-      <IModal open={isShowLoginForm} onClose={hideLoginForm}>
+      {/* <IModal open={isShowLoginForm} onClose={hideLoginForm}>
         <LoginForm onSuccessLogin={onSuccessLogin} />
       </IModal>
 
       <IModal open={isShowForgetPassForm} onClose={hideForgetPassForm}>
         <ForgetPassForm onSuccessEmail={onSuccessEmail} />
-      </IModal>
+      </IModal> */}
 
       <Alert />
     </>
   );
 };
 
-const mapStateToProps = (state: IGlobalState) => {
+/* const mapStateToProps = (state: IGlobalState) => {
   return {
     isShowLoginForm: state.modal.openLoginForm,
     isShowForgetPassForm: state.modal.openForgetPassForm,
@@ -71,6 +71,8 @@ const mapDispatchToProps = dispatch => {
     hideLoginForm: () => dispatch(hideLoginFormAC()),
     hideForgetPassForm: () => dispatch(hideForgetPassFormAC()),
   };
-};
+}; 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);*/
+
+export default Layout;

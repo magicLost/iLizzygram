@@ -113,37 +113,28 @@ export const Default = () => {
           <div style={{ padding: "30px" }}>
             <div>
               <ShowAuthState />
-              <h3>Registration</h3>
-              <p>
-                We must manually add user to users table if we wanna allow him
-                to add photos
+
+              <br />
+              <br />
+
+              <h3>SignIn:</h3>
+              <p style={{ padding: "15px" }}>
+                We must sign in user with google account and on success send
+                additional request to check if user in users collection and save
+                result to local storage.
               </p>
 
-              <h3>SignIn</h3>
-              <p>
-                We must sign in user with email and password and on success send
-                additional request to check if user in users collection
-              </p>
-
-              <h3>Firestore Rules</h3>
-              <p>
+              <h3>Firestore Rules:</h3>
+              <p style={{ padding: "15px" }}>
                 <ul>
                   <li>User can read if he is auth</li>
                   <li>
                     User can add/edit only if he exists in users collection
                   </li>
                   <li>User can edit if addByUser = user.uid</li>
-                  <li>???Validate to user name, pass.</li>
                 </ul>
               </p>
             </div>
-
-            <p>
-              {" "}
-              TODO: make registration with name - on success register call
-              currentUser.updateProfile
-            </p>
-            <p> TODO: make change profile name </p>
           </div>
 
           <PhotoTab />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //import { action } from "@storybook/addon-actions";
 
 import Layout from ".";
@@ -40,6 +40,16 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 
 export const Default = () => {
+  useEffect(() => {
+    store.dispatch({
+      type: "AUTH",
+      user: {
+        name: "Sia",
+        email: "sia@mail.ru",
+        uid: "123elrfjweoj324",
+      },
+    });
+  }, []);
   return (
     <Provider store={store}>
       <Layout Logo={PureLogo}>

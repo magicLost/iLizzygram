@@ -2,11 +2,11 @@ import { IPhotoData } from "./../../types";
 import { IModalAction } from "../types";
 
 //SHOW
-export const showLoginFormAC = (): IModalAction => {
+/* export const showLoginFormAC = (): IModalAction => {
   return {
     type: "SHOW_LOGIN_FORM",
   };
-};
+}; */
 
 export const showAddFormAC = (): IModalAction => {
   return {
@@ -38,18 +38,18 @@ export const showPhotoSliderAC = (
   };
 };
 
-export const showForgetPassFormAC = (): IModalAction => {
+/* export const showForgetPassFormAC = (): IModalAction => {
   return {
     type: "SHOW_FORGET_PASS_FORM",
   };
-};
+}; */
 
 //HIDE
-export const hideLoginFormAC = (): IModalAction => {
+/* export const hideLoginFormAC = (): IModalAction => {
   return {
     type: "HIDE_LOGIN_FORM",
   };
-};
+}; */
 
 export const hideAddFormAC = (): IModalAction => {
   return {
@@ -75,8 +75,9 @@ export const hidePhotoSliderAC = (): IModalAction => {
   };
 };
 
-export const hideForgetPassFormAC = (): IModalAction => {
+/* export const hideForgetPassFormAC = (): IModalAction => {
   return {
     type: "HIDE_FORGET_PASS_FORM",
   };
 };
+ */

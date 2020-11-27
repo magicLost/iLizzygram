@@ -105,8 +105,8 @@ export const makeEditPhotoData = (
   if (formData.tags) fieldsToUpdate.tags = getOnlyTrueTags(formData.tags);
   if (formData.desc) fieldsToUpdate.description = formData.desc;
 
-  if (formData.photoFile && formData.photoFile.length > 0)
-    fieldsToUpdate.isActive = false;
+  /* if (formData.photoFile && formData.photoFile.length > 0)
+    fieldsToUpdate.isActive = false; */
 
   return fieldsToUpdate;
 };

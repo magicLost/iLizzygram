@@ -10,7 +10,7 @@ import { IAddPhotoFormData } from "../../types";
 import { IEditPhotoFormData } from "../../types";
 import { makeAddPhotoData, makeEditPhotoData, isInSearchTerms } from "../utils";
 import { addPhotoUrl, editPhotoUrl } from "../../../config";
-import { makeNewPhotoStateItems } from "./helper";
+import { makeNewPhotoStateItems, makePhotoFormData } from "./helper";
 import { IPhotoData } from "../../../types";
 import random from "lodash.random";
 
@@ -133,14 +133,14 @@ export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
 
 export const addPhotoToFirestoreAC = (
   photoFormData: IAddPhotoFormData,
-  userUID: string,
+  userUid: string,
   onSuccess?: any,
   onError?: any
 ) => {
   return async dispatch => {
     try {
       const photo = makeAddPhotoData(photoFormData);
-      photo.addedByUserUID = userUID;
+      photo.addedByUserUID = userUid;
       dispatch(addPhotoStartRequestAC());
 
       //SAVE PHOTO DATA TO FIRESTORE
@@ -148,16 +148,26 @@ export const addPhotoToFirestoreAC = (
       await photosCollection.doc(id).set(photo);
 
       //SEND PHOTO FILE TO EXPRESS
-      /*  const formData = new FormData();
-      formData.append("id", result.id);
-      formData.append("file", photoFormData.photoFile[0]);
+
+      const formData = makePhotoFormData({
+        id,
+        file: photoFormData.photoFile[0],
+        userUid,
+      });
 
       const res = await axios.post(addPhotoUrl, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("success axios request "); */
+
+      console.log("ADD RESPONSE", res);
+
+      if (res.data.status === "error") {
+        throw new Error(`Error on add photo - ${res.data.data}`);
+      }
+
+      console.log("success axios request ");
       //show success or error alert
       dispatch(addPhotoRequestSuccessAC());
       if (onSuccess) onSuccess();
@@ -172,46 +182,67 @@ export const editPhotoToFirestoreAC = (
   photoId: string,
   photoFormData: IEditPhotoFormData,
   searchState: ISearchState,
+  userUid: string,
   onSuccess?: any,
   onError?: any
 ) => {
   return async dispatch => {
     try {
+      dispatch(editPhotoStartRequestAC());
+
+      // DO WE HAVE ANY FIRESTORE FIELDS TO UPDATE
       const photo = makeEditPhotoData(photoFormData);
 
-      dispatch(editPhotoStartRequestAC());
-      if (photoFormData.photoFile && photoFormData.photoFile.length > 0) {
-        //send photo data to firestore
+      if (Object.keys(photo).length > 0) {
         await photosCollection.doc(photoId).update(photo);
-        //send photo file to express
-        /*      const params = new URLSearchParams();
-
-        params.append("doc_id", photoId);
-
-        const res = await axios.post(editPhotoUrl, params); */
-        //show success or error alert
-
-        //we must compare photoFormData.tags with serchState.tags
-        //and if in photoFormData.tags different tags - we must remove
-        // photo from state
-        if (isInSearchTerms(searchState, photo)) {
-          dispatch(editPhotoRequestSuccessAC());
-        } else {
-          dispatch(editPhotoRequestSuccessAC(photoId));
-        }
-
-        if (onSuccess) onSuccess();
-      } else {
-        await photosCollection.doc(photoId).update(photo);
-
-        if (isInSearchTerms(searchState, photo)) {
-          dispatch(editPhotoRequestSuccessAC());
-        } else {
-          dispatch(editPhotoRequestSuccessAC(photoId));
-        }
-
-        if (onSuccess) onSuccess();
       }
+
+      // DO WE HAVE FILE TO UPDATE
+      if (photoFormData.photoFile && photoFormData.photoFile.length > 0) {
+        //send photo file to express
+        const formData = makePhotoFormData({
+          id: photoId,
+          file: photoFormData.photoFile[0],
+          userUid,
+        });
+
+        const res = await axios.post(addPhotoUrl, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log("EDIT RESPONSE", res);
+
+        if (res.data.status === "error") {
+          throw new Error(`Error on edit photo - ${res.data.data}`);
+        }
+      }
+
+      //show success or error alert
+
+      //we must compare photoFormData.tags with serchState.tags
+      //and if in photoFormData.tags different tags - we must remove
+      // photo from state
+      if (isInSearchTerms(searchState, photo)) {
+        dispatch(editPhotoRequestSuccessAC());
+      } else {
+        dispatch(editPhotoRequestSuccessAC(photoId));
+      }
+
+      if (onSuccess) onSuccess();
+
+      /* else {
+        await photosCollection.doc(photoId).update(photo);
+
+        if (isInSearchTerms(searchState, photo)) {
+          dispatch(editPhotoRequestSuccessAC());
+        } else {
+          dispatch(editPhotoRequestSuccessAC(photoId));
+        }
+
+        if (onSuccess) onSuccess();
+      } */
     } catch (err) {
       dispatch(editPhotoRequestErrorAC());
       if (onError) onError();

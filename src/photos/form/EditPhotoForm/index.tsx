@@ -30,6 +30,7 @@ interface EditPhotoFormProps {
   title?: string;
   prevPhoto?: IPhotoData;
   fetchPhoto?: any;
+  userUid?: string;
   searchState?: ISearchState;
   showAlert?: (message: string, type: Color) => void;
   onSuccessUpload?: (
@@ -56,6 +57,7 @@ export const EditPhotoForm = ({
   prevPhoto,
   fetchPhoto,
   searchState,
+  userUid,
   showAlert,
   onSuccessUpload,
   onUploadError,
@@ -96,6 +98,7 @@ export const EditPhotoForm = ({
       prevPhoto.id,
       changedData,
       searchState,
+      userUid,
       onSuccessUpload,
       onError
     );
@@ -136,6 +139,7 @@ const mapStateToProps = (state: IGlobalState) => {
   return {
     prevPhoto: state.modal.photo,
     tagsData: state.tags.tags,
+    userUid: state.auth.user.uid,
     searchState: state.search,
   };
 };
@@ -148,6 +152,7 @@ const mapDispatchToProps = dispatch => {
       photoId: string,
       photoFormData: IEditPhotoFormData,
       searchState: ISearchState,
+      userUid: string,
       onSuccess?: any,
       onError?: any
     ) => {
@@ -156,6 +161,7 @@ const mapDispatchToProps = dispatch => {
           photoId,
           photoFormData,
           searchState,
+          userUid,
           onSuccess,
           onError
         )

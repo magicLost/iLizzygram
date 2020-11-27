@@ -2,9 +2,9 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import { IAuthAction } from "./../types";
 import { IAuthUser } from "./../../types";
-import { ILoginFormData } from "../types";
-import { db } from "./../../container/ReduxWrapper";
-import { usersCollectionName } from "./../../config";
+//import { ILoginFormData } from "../types";
+//import { db } from "./../../container/ReduxWrapper";
+import { authLocalStorageKey } from "./../../config";
 
 export const authAC = (user: IAuthUser): IAuthAction => {
   return {
@@ -50,7 +50,7 @@ export const logoutRequestErrorAC = (): IAuthAction => {
   };
 };
 
-export const forgetPassRequestAC = (): IAuthAction => {
+/* export const forgetPassRequestAC = (): IAuthAction => {
   return {
     type: "FORGET_PASS_REQUEST",
   };
@@ -66,8 +66,39 @@ export const forgetPassRequestErrorAC = (): IAuthAction => {
   return {
     type: "FORGET_PASS_ERROR",
   };
+}; */
+
+export const loginAC = (onError?: Function, onSuccess?: Function) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(loginRequestAC());
+
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      const res = await firebase.auth().signInWithPopup(provider);
+      // The signed-in user info.
+      const user = res.user;
+
+      let isEditor = false;
+
+      /*  if (user) {
+        const res = await db
+          .collection(usersCollectionName)
+          .doc(user.uid)
+          .get();
+        isEditor = res.exists;
+      } */
+
+      dispatch(loginRequestSuccessAC(isEditor));
+      if (onSuccess) onSuccess();
+    } catch (err) {
+      if (onError) onError(err.message);
+      dispatch(loginRequestErrorAC());
+    }
+  };
 };
 
+/* 
 export const loginAC = (
   data: ILoginFormData,
   onError?: Function,
@@ -99,7 +130,7 @@ export const loginAC = (
       dispatch(loginRequestErrorAC());
     }
   };
-};
+}; */
 
 export const logoutAC = (onError?: Function, onSuccess?: Function) => {
   return async (dispatch: any) => {
@@ -108,6 +139,8 @@ export const logoutAC = (onError?: Function, onSuccess?: Function) => {
 
       //TODO request to auth to firebase
       await firebase.auth().signOut();
+
+      localStorage.removeItem(authLocalStorageKey);
 
       dispatch(logoutRequestSuccessAC());
 
@@ -119,7 +152,7 @@ export const logoutAC = (onError?: Function, onSuccess?: Function) => {
   };
 };
 
-export const forgetPassAC = (
+/* export const forgetPassAC = (
   email: string,
   onError?: Function,
   onSuccess?: Function
@@ -139,4 +172,4 @@ export const forgetPassAC = (
       dispatch(forgetPassRequestErrorAC());
     }
   };
-};
+}; */

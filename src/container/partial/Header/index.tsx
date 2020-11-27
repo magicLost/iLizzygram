@@ -14,15 +14,16 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IUserResponseToClient } from "../../../types";
 //import { showLoginForm } from "../../../apolloClient/cache.controller";
 import { IGlobalState } from "../../../store/types";
-import { showLoginFormAC } from "../../../store";
-import { logoutAC } from "../../../auth";
+//import { showLoginFormAC } from "../../../store";
+import { logoutAC, loginAC } from "../../../auth";
 import { connect } from "react-redux";
+import googleIcon from "./../../../../static/google.svg";
 
 interface IHeaderProps {
   Logo: React.FunctionComponent;
   user?: IUserResponseToClient | undefined;
   loading?: boolean;
-  showLoginForm?: () => void;
+  onLogin?: (onError?: Function, onSuccess?: Function) => void;
   logout?: () => void;
 }
 
@@ -37,7 +38,8 @@ const useStyles = makeStyles({
     textTransform: "none",
   },
   loginButton: {
-    alignItems: "flex-start",
+    //alignItems: "flex-start",
+    textTransform: "none",
   },
   toolbar: {
     //display: "flex",
@@ -47,15 +49,17 @@ const useStyles = makeStyles({
   },
 });
 
+const GoogleIcon = () => <img width={17} src={googleIcon} />;
+
 const getAuthFragment = (
   user: IUserResponseToClient | undefined,
   loading: boolean,
   classes: any,
-  showLoginForm: () => void,
+  onLogin: () => void,
   onLogout: () => void
 ) => {
   if (loading) {
-    return <Skeleton variant="rect" width={90} height={36} />;
+    return <Skeleton variant="rect" width={100} height={28} />;
   }
 
   if (user) {
@@ -69,7 +73,7 @@ const getAuthFragment = (
             color="primary"
             startIcon={<FaceIcon />}
           >
-            {user.email}
+            {user.name ? user.name : user.email}
           </Button>
         }
         onLogOutUser={onLogout}
@@ -80,32 +84,36 @@ const getAuthFragment = (
       <Button
         color="primary"
         className={classes.loginButton}
-        startIcon={<LockIcon />}
+        startIcon={<GoogleIcon />}
         size="small"
-        onClick={showLoginForm}
+        onClick={onLogin}
       >
-        Login
+        Войти с Google
       </Button>
     );
   }
 };
 
+/* <Button
+        color="primary"
+        className={classes.loginButton}
+        startIcon={<LockIcon />}
+        size="small"
+        onClick={showLoginForm}
+      >
+        Login
+      </Button> */
+
 export const Header = ({
   Logo,
   user,
   loading,
-  showLoginForm,
+  onLogin,
   logout,
 }: IHeaderProps) => {
   const classes = useStyles();
 
-  const authFragment = getAuthFragment(
-    user,
-    loading,
-    classes,
-    showLoginForm,
-    logout
-  );
+  const authFragment = getAuthFragment(user, loading, classes, onLogin, logout);
 
   console.log("[RENDER HEADER]", user, loading);
 
@@ -131,7 +139,7 @@ const mapStateToProps = (state: IGlobalState) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showLoginForm: () => dispatch(showLoginFormAC()),
+    onLogin: () => dispatch(loginAC()),
     logout: () => {
       console.log("logout");
       dispatch(logoutAC());

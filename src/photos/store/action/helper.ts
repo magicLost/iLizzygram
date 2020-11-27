@@ -1,5 +1,16 @@
 import { limit } from "./../ihook";
-import { IPhotosAction, TPhotoData, IPhotosState } from "../../types";
+import { TPhotoData } from "../../types";
+import { IAddEditPhotoPostRequest } from "./../../../types";
+
+export const makePhotoFormData = (data: IAddEditPhotoPostRequest) => {
+  const formData = new FormData();
+
+  formData.append("file", data.file);
+  formData.append("id", data.id);
+  formData.append("userUid", data.userUid);
+
+  return formData;
+};
 
 export const makeNewPhotoStateItems = (
   querySnapshot: any

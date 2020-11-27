@@ -5,9 +5,9 @@ const modalInitialState: IModalState = {
   openSlider: false,
   openEditForm: false,
   openAddForm: false,
-  openLoginForm: false,
+  //openLoginForm: false,
   openSearch: false,
-  openForgetPassForm: false,
+  //openForgetPassForm: false,
   initActiveIndex: 0,
   photo: undefined,
 };
@@ -31,7 +31,7 @@ const reducer: Reducer<IModalState, IModalAction> = (
         openSlider: false,
       };
 
-    case "SHOW_LOGIN_FORM":
+    /*  case "SHOW_LOGIN_FORM":
       return {
         ...state,
         openLoginForm: true,
@@ -41,7 +41,7 @@ const reducer: Reducer<IModalState, IModalAction> = (
       return {
         ...state,
         openLoginForm: false,
-      };
+      }; */
 
     case "SHOW_ADD_FORM":
       return {
@@ -80,7 +80,7 @@ const reducer: Reducer<IModalState, IModalAction> = (
         openSearch: false,
       };
 
-    case "SHOW_FORGET_PASS_FORM":
+    /*   case "SHOW_FORGET_PASS_FORM":
       return {
         ...state,
         openForgetPassForm: true,
@@ -90,7 +90,7 @@ const reducer: Reducer<IModalState, IModalAction> = (
       return {
         ...state,
         openForgetPassForm: false,
-      };
+      }; */
 
     default:
       return state;

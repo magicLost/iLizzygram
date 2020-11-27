@@ -8,10 +8,10 @@ const authInitialState: IAuthState = {
   authLoading: true,
   loginLoading: false,
   logoutLoading: false,
-  forgetPassLoading: false,
+  //forgetPassLoading: false,
   loginError: false,
   logoutError: false,
-  forgetPassError: false,
+  //forgetPassError: false,
 };
 
 const reducer: Reducer<IAuthState, IAuthAction> = (
@@ -62,7 +62,7 @@ const reducer: Reducer<IAuthState, IAuthAction> = (
         logoutLoading: false,
         logoutError: true,
       };
-    case "FORGET_PASS_REQUEST":
+    /*  case "FORGET_PASS_REQUEST":
       return {
         ...state,
         forgetPassLoading: true,
@@ -79,7 +79,7 @@ const reducer: Reducer<IAuthState, IAuthAction> = (
         ...state,
         forgetPassLoading: false,
         forgetPassError: true,
-      };
+      }; */
     default:
       return state;
   }

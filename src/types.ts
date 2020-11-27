@@ -50,3 +50,9 @@ export interface IPhotoData {
   id: string;
   photo: IPhoto;
 }
+
+export interface IAddEditPhotoPostRequest {
+  file: File;
+  id: string;
+  userUid: string;
+}

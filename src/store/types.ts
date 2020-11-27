@@ -20,18 +20,18 @@ export interface IGlobalState {
 export type TAlertActionTypes = "SHOW_ALERT" | "HIDE_ALERT";
 
 export type TModalActionTypes =
-  | "SHOW_LOGIN_FORM"
+  // | "SHOW_LOGIN_FORM"
   | "SHOW_ADD_FORM"
   | "SHOW_EDIT_FORM"
   | "SHOW_PHOTO_SLIDER"
   | "SHOW_SEARCH_FORM"
-  | "SHOW_FORGET_PASS_FORM"
-  | "HIDE_LOGIN_FORM"
+  // | "SHOW_FORGET_PASS_FORM"
+  //  | "HIDE_LOGIN_FORM"
   | "HIDE_ADD_FORM"
   | "HIDE_EDIT_FORM"
   | "HIDE_PHOTO_SLIDER"
-  | "HIDE_SEARCH_FORM"
-  | "HIDE_FORGET_PASS_FORM";
+  | "HIDE_SEARCH_FORM";
+  // | "HIDE_FORGET_PASS_FORM"
 
 export type TTagsActionTypes =
   | "TAGS_REQUEST"
@@ -50,9 +50,9 @@ export interface IModalState {
   openSlider: boolean;
   openEditForm: boolean;
   openAddForm: boolean;
-  openLoginForm: boolean;
+  //openLoginForm: boolean;
   openSearch: boolean;
-  openForgetPassForm: boolean;
+  // openForgetPassForm: boolean;
   initActiveIndex: number;
   photo: IPhotoData;
 }

@@ -9,6 +9,6 @@ export { authAC, loginAC, logoutAC } from "./store/action";
 
 export { useInit } from "./hook";
 
-export { default as ForgetPassForm } from "./form/ForgetPassForm";
+//export { default as ForgetPassForm } from "./form/ForgetPassForm";
 
-export { default as LoginForm } from "./form/LoginForm";
+//export { default as LoginForm } from "./form/LoginForm";

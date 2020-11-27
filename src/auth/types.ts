@@ -9,20 +9,21 @@ export type TAuthActionTypes =
   | "LOGIN_REQUEST_ERROR"
   | "LOGOUT_REQUEST"
   | "LOGOUT_REQUEST_SUCCESS"
-  | "LOGOUT_REQUEST_ERROR"
-  | "FORGET_PASS_REQUEST"
+  | "LOGOUT_REQUEST_ERROR";
+
+/*   | "FORGET_PASS_REQUEST"
   | "FORGET_PASS_SUCCESS"
-  | "FORGET_PASS_ERROR";
+  | "FORGET_PASS_ERROR" */
 
 export interface IAuthState {
   user: IUserResponseToClient | undefined;
   authLoading: boolean;
   loginLoading: boolean;
   logoutLoading: boolean;
-  forgetPassLoading: boolean;
+  //forgetPassLoading: boolean;
   loginError: boolean;
   logoutError: boolean;
-  forgetPassError: boolean;
+  //forgetPassError: boolean;
 }
 
 export interface IAuthAction extends Action<TAuthActionTypes> {
