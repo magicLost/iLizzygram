@@ -1,24 +1,10 @@
 import { getLizzyYearsOld } from "./utils";
 
+/* FIRESTORE */
+
 export const photosCollectionName = "photos";
 export const tagsCollectionName = "tags";
 export const usersCollectionName = "users";
-
-export const authLocalStorageKey = "lg_super_puper_user";
-
-export const addPhotoUrl = "http://localhost:8000/api/add";
-export const editPhotoUrl = "http://localhost:8000/api/edit";
-
-/* export const firebaseConfig = {
-  apiKey: "AIzaSyCv_yjqOEsCVwhUSb3LlPPM7KRMownIqcg",
-  authDomain: "fir-course-dc949.firebaseapp.com",
-  databaseURL: "https://fir-course-dc949.firebaseio.com",
-  projectId: "fir-course-dc949",
-  storageBucket: "fir-course-dc949.appspot.com",
-  messagingSenderId: "606625504142",
-  appId: "1:606625504142:web:0a2a450938c075117b62df",
-  measurementId: "G-PJZN4F3WDX",
-}; */
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDKywOLq8yuozmOXjtOUIR7yUXBekDoN3A",
@@ -30,5 +16,25 @@ export const firebaseConfig = {
   appId: "1:944169679344:web:d376029997bd7351b04535",
   measurementId: "G-C9Q921F1E6",
 };
+
+/* AUTH */
+
+export const authLocalStorageKey = "lg_super_puper_user";
+
+/* EXPRESS SERVER */
+
+export const expressUrl = "http://localhost:3009";
+
+export const addPhotoUrl = `${expressUrl}/add-photo`;
+export const editPhotoUrl = `${expressUrl}/edit-photo`;
+
+/* PHOTOS */
+export const limitPhotosPerQuery = 1;
+
+export const addPhotoFormTitle = "Загрузить новое фото:";
+export const editPhotoFormTitle = "Изменить фото:";
+export const searchPhotoFormTitle = "Поиск фото:";
+
+/* OTHER */
 
 export const lizzyYearsOld = getLizzyYearsOld();

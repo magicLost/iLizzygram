@@ -3,7 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { modalReducer, alertReducer, tagsReducer } from "./../../store";
-import { photoReducer } from "./../../photos";
+import { photoReducer, searchReducer } from "./../../photos";
 import { authReducer } from "./../../auth";
 import { firestore, initializeApp, apps } from "firebase/app";
 import "firebase/firebase-firestore";
@@ -12,6 +12,7 @@ import {
   photosCollectionName,
   tagsCollectionName,
 } from "../../config";
+import Layout from "./../partial/Layout";
 
 //CONFIG FIREBASE
 
@@ -70,6 +71,7 @@ const reducer = combineReducers({
   alert: alertReducer,
   auth: authReducer,
   tags: tagsReducer,
+  search: searchReducer,
   photos: photoReducer,
 });
 
@@ -82,4 +84,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middleware))
 );
 
-export default ({ element }) => <Provider store={store}>{element}</Provider>;
+export default ({ element }) => (
+  <Provider store={store}>
+    <Layout>{element}</Layout>
+  </Provider>
+);

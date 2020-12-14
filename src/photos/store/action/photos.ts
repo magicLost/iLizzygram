@@ -1,18 +1,18 @@
 import {
   IPhotosAction,
-  IPhotosState,
-  ISearchState,
-  TPhotoData,
+  //IPhotosState,
+  //ISearchState,
+  TPhotosData,
 } from "../../types";
-import { photosCollection } from "../../../container/ReduxWrapper";
+/* import { photosCollection } from "../../../container/ReduxWrapper";
 import axios from "axios";
 import { IAddPhotoFormData } from "../../types";
 import { IEditPhotoFormData } from "../../types";
 import { makeAddPhotoData, makeEditPhotoData, isInSearchTerms } from "../utils";
-import { addPhotoUrl, editPhotoUrl } from "../../../config";
-import { makeNewPhotoStateItems, makePhotoFormData } from "./helper";
-import { IPhotoData } from "../../../types";
-import random from "lodash.random";
+import { addPhotoUrl, editPhotoUrl } from "../../../config"; */
+//import { makeNewPhotoStateItems, makePhotoFormData } from "./helper";
+import { TPhotoData } from "../../types";
+//import random from "lodash.random";
 
 export const allPhotosStartRequestAC = (): IPhotosAction => {
   return {
@@ -21,7 +21,7 @@ export const allPhotosStartRequestAC = (): IPhotosAction => {
 };
 
 export const allPhotosRequestSuccessAC = (
-  photos: TPhotoData,
+  photos: TPhotosData,
   nextPageDocRef: any,
   hasNextPage: boolean
 ): IPhotosAction => {
@@ -34,7 +34,7 @@ export const allPhotosRequestSuccessAC = (
 };
 
 export const fetchMorePhotosRequestSuccessAC = (
-  photos: TPhotoData,
+  photos: TPhotosData,
   nextPageDocRef: any,
   hasNextPage: boolean
 ): IPhotosAction => {
@@ -89,21 +89,28 @@ export const editPhotoRequestErrorAC = (): IPhotosAction => {
   };
 };
 
-export const editPhotoAC = (photo: IPhotoData): IPhotosAction => {
+export const editPhotoAC = (photo: TPhotoData): IPhotosAction => {
   return {
     type: "EDIT_PHOTO",
     photo,
   };
 };
 
-export const addPhotoAC = (photo: IPhotoData): IPhotosAction => {
+export const addPhotoAC = (photo: TPhotoData): IPhotosAction => {
   return {
     type: "ADD_PHOTO",
     photo,
   };
 };
 
-export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
+export const deletePhotoAC = (photoId: string): IPhotosAction => {
+  return {
+    type: "DELETE_PHOTO",
+    photoId,
+  };
+};
+
+/* export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
   return async dispatch => {
     try {
       dispatch(allPhotosStartRequestAC());
@@ -111,7 +118,7 @@ export const fetchPhotosAC = (query: any, isFetchMore: boolean = false) => {
       const querySnapshot = await query.get();
 
       console.log("PHOTOS SUCCESS", querySnapshot.size);
-      //const photoData: TPhotoData = new Map();
+      //const photoData: TPhotosData = new Map();
 
       const { hasNextPage, nextPageDocRef, photos } = makeNewPhotoStateItems(
         querySnapshot
@@ -242,10 +249,11 @@ export const editPhotoToFirestoreAC = (
         }
 
         if (onSuccess) onSuccess();
-      } */
+      } /
     } catch (err) {
       dispatch(editPhotoRequestErrorAC());
       if (onError) onError();
     }
   };
 };
+ */

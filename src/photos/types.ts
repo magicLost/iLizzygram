@@ -1,4 +1,4 @@
-import { IPhoto, IPhotoData } from "./../types";
+import { IPhoto } from "./../types";
 import { Action } from "redux";
 
 // STORE
@@ -24,9 +24,11 @@ export interface ISearchAction extends Action<TSearchActionTypes> {
 }
 
 // PHOTOS
+
 export type TPhotosActionTypes =
   | "ADD_PHOTO"
   | "EDIT_PHOTO"
+  | "DELETE_PHOTO"
   | "ADD_PHOTO_START_REQUEST"
   | "ADD_PHOTO_REQUEST_SUCCESS"
   | "ADD_PHOTO_REQUEST_ERROR"
@@ -45,12 +47,17 @@ export type TPhotoFirestoreResponse = {
   id: string;
 };
 
-export type TPhotoData = Map<string, IPhoto>;
+export type TPhotosData = Map<string, IPhoto>;
+
+export type TPhotoData = {
+  id: string;
+  photo: IPhoto;
+};
 
 export interface IPhotosState {
   hasNextPage: boolean;
   nextPageDocRef: any;
-  photos: TPhotoData | undefined;
+  photos: TPhotosData | undefined;
   loading: boolean;
   error: boolean;
   addLoading: boolean;
@@ -60,8 +67,8 @@ export interface IPhotosState {
 }
 
 export interface IPhotosAction extends Action<TPhotosActionTypes> {
-  photos?: TPhotoData;
-  photo?: IPhotoData;
+  photos?: TPhotosData;
+  photo?: TPhotoData;
   photoId?: string;
   hasNextPage?: boolean;
   nextPageDocRef?: any;
@@ -75,12 +82,12 @@ export type TAddFormFetchFunc = (
   onError?: any
 ) => (dispatch: any) => void;
 
-export type TEditFormFetchFunc = (
+/* export type TEditFormFetchFunc = (
   photoId: string,
   photoFormData: IEditPhotoFormData,
   onSuccess?: any,
   onError?: any
-) => (dispatch: any) => void;
+) => (dispatch: any) => void; */
 
 // FORMS
 

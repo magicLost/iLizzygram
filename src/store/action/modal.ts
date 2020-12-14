@@ -1,4 +1,4 @@
-import { IPhotoData } from "./../../types";
+import { TPhotoData } from "./../../photos/types";
 import { IModalAction } from "../types";
 
 //SHOW
@@ -14,7 +14,7 @@ export const showAddFormAC = (): IModalAction => {
   };
 };
 
-export const showEditFormAC = (photo: IPhotoData): IModalAction => {
+export const showEditFormAC = (photo: TPhotoData): IModalAction => {
   return {
     type: "SHOW_EDIT_FORM",
     photo,
@@ -28,7 +28,7 @@ export const showSearchFormAC = (): IModalAction => {
 };
 
 export const showPhotoSliderAC = (
-  photo: IPhotoData,
+  photo: TPhotoData,
   initActiveIndex: number
 ): IModalAction => {
   return {

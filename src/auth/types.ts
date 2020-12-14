@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { IUserResponseToClient } from "./../types";
+import { IUserResponseToClient, IAuthUser } from "./../types";
 
 // STORE
 export type TAuthActionTypes =
@@ -16,10 +16,9 @@ export type TAuthActionTypes =
   | "FORGET_PASS_ERROR" */
 
 export interface IAuthState {
-  user: IUserResponseToClient | undefined;
-  authLoading: boolean;
-  loginLoading: boolean;
-  logoutLoading: boolean;
+  user: IAuthUser | undefined;
+  loading: boolean;
+  //logoutLoading: boolean;
   //forgetPassLoading: boolean;
   loginError: boolean;
   logoutError: boolean;
@@ -27,7 +26,7 @@ export interface IAuthState {
 }
 
 export interface IAuthAction extends Action<TAuthActionTypes> {
-  user?: IUserResponseToClient;
+  user?: IAuthUser;
   isEditor?: boolean;
 }
 

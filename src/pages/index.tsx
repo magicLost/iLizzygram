@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import loadable from "@loadable/component";
+//import { connect } from "react-redux";
+/* import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import Layout from "../container/partial/Layout";
 import IconButton from "@material-ui/core/IconButton";
 import AdbIcon from "@material-ui/icons/Adb";
 import Button from "@material-ui/core/Button";
-import MaterialLink from "@material-ui/core/Link";
-import { Link } from "gatsby";
-import Backdrop from "@material-ui/core/Backdrop";
+import MaterialLink from "@material-ui/core/Link"; */
+//import { Link } from "gatsby";
+//import Backdrop from "@material-ui/core/Backdrop";
 import ErrorBoundary from "../component/ErrorBoundary";
 import SEO from "../component/SEO";
-import Logo from "../component/Logo";
+//import SEO from "../component/SEO";
+//import Logo from "../component/Logo";
+import Photos from "../photos/container/Photos";
+//import { IAuthUser } from "./../types";
 
 /* const LogoLoadable = loadable(
   //import(/* webpackPrefetch: true / '../component/Logo')
@@ -26,35 +30,16 @@ import Logo from "../component/Logo";
   }
 );
  */
-const Home = () => {
-  const [isShow, setIsShow] = useState(false);
-
+const Home = ({ auth }) => {
   return (
-    <Layout Logo={Logo}>
+    <>
       <SEO />
-
       <ErrorBoundary>
         <main>
-          <div>Hello world from Lizzygram!</div>
-
-          <Button onClick={() => setIsShow(prev => !prev)}>
-            Show dynamic content.
-          </Button>
-
-          <MaterialLink
-            color="secondary"
-            to="/hello"
-            component={Link}
-            variant="body2"
-          >
-            Material link to hello page.
-          </MaterialLink>
+          <Photos />
         </main>
-
-        {/* Here place for our modals */}
-        {/*  <Backdrop open={isShow}>{isShow && <LogoLoadable />}</Backdrop> */}
       </ErrorBoundary>
-    </Layout>
+    </>
   );
 };
 

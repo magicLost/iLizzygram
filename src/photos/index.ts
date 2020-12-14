@@ -13,7 +13,7 @@ export { setSearchStateAC } from "./store/action/search";
 
 //export { useSubscribe, reSubscribe } from "./store/hook";
 
-export { usePhotos } from "./store/ihook";
+export { usePhotos } from "./store/hook";
 
 export { default as AddPhotoForm } from "./form/AddPhotoForm";
 

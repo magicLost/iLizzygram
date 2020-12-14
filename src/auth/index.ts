@@ -7,7 +7,7 @@ export { default as authReducer } from "./store/reducer";
 
 export { authAC, loginAC, logoutAC } from "./store/action";
 
-export { useInit } from "./hook";
+export { useAuth } from "./hook";
 
 //export { default as ForgetPassForm } from "./form/ForgetPassForm";
 

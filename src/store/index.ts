@@ -1,7 +1,7 @@
 // ACTIONS
 export {
-  showLoginFormAC,
-  hideLoginFormAC,
+  //showLoginFormAC,
+  //hideLoginFormAC,
   showAddFormAC,
   hideAddFormAC,
   showEditFormAC,
@@ -10,9 +10,9 @@ export {
   hidePhotoSliderAC,
   showSearchFormAC,
   hideSearchFormAC,
-  hideForgetPassFormAC,
-  showForgetPassFormAC,
-} from "./action/modal";
+} from //hideForgetPassFormAC,
+//showForgetPassFormAC,
+"./action/modal";
 
 export { showAlertAC, hideAlertAC } from "./action/alert";
 

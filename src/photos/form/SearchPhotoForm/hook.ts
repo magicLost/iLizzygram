@@ -9,17 +9,40 @@ import {
   makeTagsFormProps,
 } from "../helper";
 import { getInitTagsState } from "../../../helper";
-import { TTagsData } from "../../../store/types";
 //import { TTagsFormState } from "./../../../types";
 import { ISearchState } from "../../types";
 //import { fromStateToFormData } from "./helper";
+import { useDispatch, useSelector, batch } from "react-redux";
+import { IGlobalState, TTagsData } from "../../../store/types";
+import { hideSearchFormAC } from "../../../store";
+import { setSearchStateAC } from "../../store/action/search";
 
-export const useSearch = (state: ISearchState, tagsData: TTagsData) => {
-  // GET INIT FORM STATE VALUES
-  /* const [defaultValues] = useState(() => {
-    return fromStateToFormData(state);
-  });  */
+export const useSearch = () => {
+  const dispatch = useDispatch();
 
+  const { tagsData, searchState } = useSelector<
+    IGlobalState,
+    { tagsData: TTagsData; searchState: ISearchState }
+  >(state => ({
+    tagsData: state.tags.tags,
+    searchState: state.search,
+  }));
+
+  const setSearchState = (state: ISearchState) => {
+    batch(() => {
+      dispatch(setSearchStateAC(state));
+      dispatch(hideSearchFormAC());
+    });
+  };
+
+  return {
+    tagsData,
+    searchState,
+    setSearchState,
+  };
+};
+
+export const useSearchForm = (state: ISearchState, tagsData: TTagsData) => {
   const {
     register,
     handleSubmit,
@@ -50,44 +73,16 @@ export const useSearch = (state: ISearchState, tagsData: TTagsData) => {
 
   const tagsProps = makeTagsFormProps(setValue, clearErrors, watch);
 
-  //const isSortDescValue = watch("isSortDesc");
-
   const agesValue = watch("ages");
-
-  /* const handleCheckboxChange = (event: any) => {
-    //console.log("handleDateChange", event.target);
-    //clearError("tags");
-    setValue(event.target.name, event.target.checked);
-  }; */
 
   const onAgeSelectChange = (event: any) => {
     setValue("ages", event.target.value);
   };
 
-  /* const onSubmit = handleSubmit(({ isSortDesc, tags }) => {
-    const tagsIds = [];
-    for (let id in tags) {
-      if (tags[id] === true) tagsIds.push(id);
-    }
-
-    isSortDesc = isSortDesc === true ? true : false;
-
-    const isSearch = tagsIds.length > 0 || !isSortDesc;
-
-    //searchVar({ ...searchVar(), isSortDesc, tagsIds, isSearch });
-
-    if (onSetSearchState) onSetSearchState();
-  }); */
-
   return {
     tagsProps,
-
-    //handleCheckboxChange,
     onAgeSelectChange,
-
-    //isSortDescValue,
     agesValue,
-
     handleSubmit,
     formErrors: errors,
   };

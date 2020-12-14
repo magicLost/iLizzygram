@@ -5,9 +5,9 @@ import { IAuthState, IAuthAction } from "./../types";
 
 const authInitialState: IAuthState = {
   user: undefined,
-  authLoading: true,
-  loginLoading: false,
-  logoutLoading: false,
+  loading: true,
+  //loginLoading: false,
+  //logoutLoading: false,
   //forgetPassLoading: false,
   loginError: false,
   logoutError: false,
@@ -23,43 +23,43 @@ const reducer: Reducer<IAuthState, IAuthAction> = (
       return {
         ...state,
         user: action.user,
-        authLoading: false,
+        loading: false,
       };
     case "LOGIN_REQUEST":
       return {
         ...state,
-        loginLoading: true,
+        loading: true,
         loginError: false,
       };
     case "LOGIN_REQUEST_SUCCESS":
       return {
         ...state,
         user: { ...state.user, isEditor: action.isEditor },
-        loginLoading: false,
+        loading: false,
         loginError: false,
       };
     case "LOGIN_REQUEST_ERROR":
       return {
         ...state,
-        loginLoading: false,
+        loading: false,
         loginError: true,
       };
     case "LOGOUT_REQUEST":
       return {
         ...state,
-        logoutLoading: true,
+        //logoutLoading: true,
         logoutError: false,
       };
     case "LOGOUT_REQUEST_SUCCESS":
       return {
         ...state,
-        logoutLoading: false,
+        //logoutLoading: false,
         logoutError: false,
       };
     case "LOGOUT_REQUEST_ERROR":
       return {
         ...state,
-        logoutLoading: false,
+        //logoutLoading: false,
         logoutError: true,
       };
     /*  case "FORGET_PASS_REQUEST":

@@ -17,27 +17,27 @@
 ]); */
 
 export const tagsData = new Map([
-  ["Hrj1grEKx6oM9Z1ZGP0G", { title: "зюганов", name: "zuganov" }],
-  ["L45RiBaK18AEoyVekFQT", { name: "pets", title: "с животными" }],
-  ["Pa8GvtwrT1tMDgNLwy4S", { title: "на улице", name: "street" }],
-  ["Ql2r2DFzzjZnzP2adh9Z", { name: "smile", title: "улыбка" }],
-  ["YBa0wyeWwEB6takyExmF", { title: "задумчиво", name: "thoughtfully" }],
-  ["YxX09wTx6kWOfZQ0ORFs", { title: "дома", name: "home" }],
-  ["cdbI7sOCFVFv337chtBE", { title: "на природе", name: "nature" }],
+  ["bCcRcxADj2xP9fkSXNpH", { title: "зюганов", name: "zuganov" }],
+  ["vekwWqVY1yYRd3XeERmd", { name: "pets", title: "с животными" }],
+  ["rNNyXhgNJUjsbGFzVGAL", { title: "на улице", name: "street" }],
+  ["WX6CY5kGx4FXvdZR6g8E", { name: "smile", title: "улыбка" }],
+  ["ieYx4ke8ms0DJb5APv4u", { title: "задумчиво", name: "thoughtfully" }],
+  ["ybrq9aFZlTk71akoH7Lz", { title: "дома", name: "home" }],
+  ["fYZ3uqG1vBLFH75Y0rjM", { title: "на природе", name: "nature" }],
 ]);
 
 export const state = {
-  Hrj1grEKx6oM9Z1ZGP0G: false,
-  L45RiBaK18AEoyVekFQT: false,
-  Pa8GvtwrT1tMDgNLwy4S: false,
-  Ql2r2DFzzjZnzP2adh9Z: false,
-  YBa0wyeWwEB6takyExmF: false,
-  YxX09wTx6kWOfZQ0ORFs: false,
-  cdbI7sOCFVFv337chtBE: false,
+  bCcRcxADj2xP9fkSXNpH: false,
+  vekwWqVY1yYRd3XeERmd: false,
+  rNNyXhgNJUjsbGFzVGAL: false,
+  WX6CY5kGx4FXvdZR6g8E: false,
+  ieYx4ke8ms0DJb5APv4u: false,
+  ybrq9aFZlTk71akoH7Lz: false,
+  fYZ3uqG1vBLFH75Y0rjM: false,
 };
 
 export const defaultTagsIds = [
-  "Pa8GvtwrT1tMDgNLwy4S",
-  "YBa0wyeWwEB6takyExmF",
-  "L45RiBaK18AEoyVekFQT",
+  "rNNyXhgNJUjsbGFzVGAL",
+  "ieYx4ke8ms0DJb5APv4u",
+  "fYZ3uqG1vBLFH75Y0rjM",
 ];

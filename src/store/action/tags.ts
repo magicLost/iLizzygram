@@ -1,5 +1,5 @@
 import { ITagsAction, TTagsData } from "./../types";
-import { ICheckboxItemData } from "./../../component/FormElements/TagsCheckbox";
+//import { ICheckboxItemData } from "./../../component/FormElements/TagsCheckbox";
 import { db } from "./../../container/ReduxWrapper";
 import { tagsCollectionName } from "../../config";
 

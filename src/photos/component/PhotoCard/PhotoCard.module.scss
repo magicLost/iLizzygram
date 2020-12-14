@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  margin: 5px;
+  width: 320px;
+  height: 180px;
+  //background-color: rgb(209, 209, 209);
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0 1px 3px rgba(190, 255, 198, 0.568);
+  }
+
+  .moreActionsBtn {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+  }
+
+  /* .image {
+        width: 320px;
+        height: 180px;
+        background-color: rgb(202, 255, 255);
+        text-align: center;
+        border-radius: 5px;
+      } */
+}

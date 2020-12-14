@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { getInitTagsState } from "../../helper";
 import { TTagsData } from "../../store/types";
 import { makeDatePickerFormProps, makeTagsFormProps } from "./helper";
-import { TTagsFormState } from "./../../types";
+//import { TTagsFormState } from "./../../types";
 
 export interface IUseUploadPhotoFormReturn {
   //onSubmit: any;
@@ -59,7 +59,7 @@ export const useUploadPhotoForm = <T>(
     if (tagsData) {
       const tagsState = getInitTagsState(tagsData, defaultTagsIds);
       //console.log("TAGS INIT STATE", tagsState);
-      setValue("tags", tagsState as any, { shouldDirty: true }); //, { shouldDirty: true }
+      setValue("tags" as any, tagsState as any, { shouldDirty: true }); //, { shouldDirty: true }
       //console.log("TAGS INIT STATE After", getValues());
     }
   }, [tagsData]);

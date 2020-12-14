@@ -1,173 +1,43 @@
 import React from "react";
-//import classes from './EditPhotoForm.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
-import { useUploadPhotoForm, IRegisterInfo } from "../hook";
-import IAddEditPhotoFormWidget from "../AddEditPhotoFormWidget";
-import { IPhotoData } from "../../../types";
-import {
-  //photoFileRules,
-  descRules,
-  dateRules,
-  tagsRules,
-} from "../Photo.rules";
-import { getChangedData, getDefaultTagsIds } from "./helper";
-import { connect } from "react-redux";
-import { editPhotoToFirestoreAC } from "../../store/action/photos";
-import { IGlobalState } from "../../../store/types";
-import { TTagsData } from "../../../store/types";
-import { Color } from "@material-ui/lab/Alert";
-import { showAlertAC } from "../../../store";
-import { ISearchState } from "../../types";
+import EditPhotoFormWidget, { IEditPhotoFormData } from "./EditPhotoForm";
+import { useEditPhotoForm } from "./hook";
+import { useEditPhoto } from "../../store/hook";
 
-export interface IEditPhotoFormData {
-  desc?: string;
-  date?: Date;
-  photoFile?: FileList;
-  tags?: { [name: string]: boolean };
-}
-
-interface EditPhotoFormProps {
-  title?: string;
-  prevPhoto?: IPhotoData;
-  fetchPhoto?: any;
-  userUid?: string;
-  searchState?: ISearchState;
-  showAlert?: (message: string, type: Color) => void;
-  onSuccessUpload?: (
-    editPhotoData: any //IEditPhotoResponseToClient
-  ) => void | undefined;
-  onUploadError?: () => void | undefined;
-  tagsData?: TTagsData;
-}
-
-const useStyles = makeStyles({
-  wrapper: {
-    display: "flex",
-    justifyContent: "center",
-  },
-});
-
-const registerInfo = [
-  { name: "tags", rules: tagsRules },
-  { name: "date", rules: { validate: dateRules.validate } },
-];
-
-export const EditPhotoForm = ({
-  title,
-  prevPhoto,
-  fetchPhoto,
-  searchState,
-  userUid,
-  showAlert,
-  onSuccessUpload,
-  onUploadError,
-  tagsData,
-}: EditPhotoFormProps) => {
-  const classes = useStyles();
-
-  const defaultTagsIds = getDefaultTagsIds(prevPhoto.photo);
-
-  const onError = (code: string) => {
-    showAlert("Какая-то ошибка. Попробуйте позже.", "error");
-
-    if (onUploadError) onUploadError();
-  };
-
-  const submit = (formData: IEditPhotoFormData) => {
-    const { photoFile, desc, date, tags } = formData;
-
-    //we check if desc or date is equal original we make it undefined
-    const changedData = getChangedData(
-      tags,
-      prevPhoto.photo,
-      desc,
-      date,
-      photoFile
-    );
-
-    console.log("SUBMIT", changedData, prevPhoto.id);
-
-    if (!changedData) {
-      //show alert with message nothing to change
-      showAlert("Вы ничего не изменили.", "error");
-      console.log("Nothing to chagne");
-      //showAlert();
-      return;
-    }
-    fetchPhoto(
-      prevPhoto.id,
-      changedData,
-      searchState,
-      userUid,
-      onSuccessUpload,
-      onError
-    );
-  };
-
-  const uploadPhotoFormData = useUploadPhotoForm<IEditPhotoFormData>(
+export const EditPhotoForm = () => {
+  const {
+    prevPhoto,
     tagsData,
-    registerInfo,
-    defaultTagsIds,
-    {
-      defaultValues: {
-        date: (prevPhoto.photo.date as any).toDate(),
-        desc: prevPhoto.photo.description,
-      },
-    }
-  );
+    userUID,
+    showAlert,
+    hideEditPhotoForm,
+  } = useEditPhotoForm();
 
-  console.log("[RENDER EDIT FORM]", prevPhoto);
+  const { editPhoto, loading } = useEditPhoto();
+
+  const onSuccess = () => {
+    hideEditPhotoForm();
+
+    showAlert("Фото успешно отредактировано.", "success");
+  };
+
+  const onError = () => {
+    showAlert("Какая-то ошибка. Попробуйте позже.", "error");
+  };
+
+  const editPhotoFinal = (photoId: string, formData: IEditPhotoFormData) =>
+    editPhoto(photoId, formData, userUID, onSuccess, onError);
+
+  console.log("[RENDER EDIT FORM]");
 
   return (
-    <>
-      <div className={classes.wrapper}>
-        <img height="150px" width="auto" src={prevPhoto.photo.iconSrc} />
-      </div>
-
-      <IAddEditPhotoFormWidget
-        title={title}
-        photoFileRules={undefined}
-        descRules={descRules}
-        onSubmit={uploadPhotoFormData.handleSubmit(submit)}
-        uploadPhotoFormData={uploadPhotoFormData}
-      />
-    </>
+    <EditPhotoFormWidget
+      showAlert={showAlert}
+      prevPhoto={prevPhoto}
+      uploadLoading={loading}
+      editPhoto={editPhotoFinal}
+      tagsData={tagsData}
+    />
   );
 };
 
-const mapStateToProps = (state: IGlobalState) => {
-  return {
-    prevPhoto: state.modal.photo,
-    tagsData: state.tags.tags,
-    userUid: state.auth.user.uid,
-    searchState: state.search,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    showAlert: (message: string, type: Color) =>
-      dispatch(showAlertAC(message, type)),
-    fetchPhoto: (
-      photoId: string,
-      photoFormData: IEditPhotoFormData,
-      searchState: ISearchState,
-      userUid: string,
-      onSuccess?: any,
-      onError?: any
-    ) => {
-      dispatch(
-        editPhotoToFirestoreAC(
-          photoId,
-          photoFormData,
-          searchState,
-          userUid,
-          onSuccess,
-          onError
-        )
-      );
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditPhotoForm);
+export default EditPhotoForm;

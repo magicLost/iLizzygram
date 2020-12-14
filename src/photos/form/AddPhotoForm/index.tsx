@@ -1,108 +1,33 @@
 import React from "react";
-import classes from "./AddPhotoForm.module.scss";
-//import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-//import { Typography } from "@material-ui/core";
-import { useUploadPhotoForm, IRegisterInfo } from "../hook";
-import {
-  photoFileRules,
-  descRules,
-  dateRules,
-  tagsRules,
-} from "../Photo.rules";
-import AddEditPhotoFormWidget from "../AddEditPhotoFormWidget";
-import { connect } from "react-redux";
-import { addPhotoToFirestoreAC } from "../../store/action/photos";
-import { IGlobalState } from "../../../store/types";
-import { TTagsData } from "../../../store/types";
-import { Color } from "@material-ui/lab/Alert";
-import { showAlertAC } from "../../../store";
+import { useAddPhoto } from "../../store/hook";
+import AddPhotoFormWidget, { IAddPhotoFormData } from "./AddPhotoForm";
+import { useAddPhotoForm } from "./hook";
 
-interface IAddPhotoFormProps {
-  title?: string;
-  userUID?: string;
-  fetchPhoto?: (
-    photoFormData: IAddPhotoFormData,
-    userUID: string,
-    onSuccess?: any,
-    onError?: any
-  ) => void;
-  showAlert?: (message: string, type: Color) => void;
-  onSuccessUpload?: (
-    uploadPhotoData: any //IUploadPhotoResponseToClient
-  ) => void | undefined;
-  onUploadError?: () => void | undefined;
-  tagsData?: TTagsData;
-}
+export const AddPhotoForm = () => {
+  const { tagsData, userUID, showAlert } = useAddPhotoForm();
 
-export interface IAddPhotoFormData {
-  desc: string;
-  date: Date;
-  photoFile: FileList;
-  tags: { [name: string]: boolean };
-}
+  const { addPhoto, loading } = useAddPhoto();
 
-export const registerInfo = [
-  { name: "tags", rules: tagsRules },
-  { name: "date", rules: dateRules },
-];
+  const onSuccess = () => {
+    showAlert("Фото успешно загружено.", "success");
+  };
 
-export const AddPhotoForm = ({
-  title,
-  userUID,
-  fetchPhoto,
-  showAlert,
-  onSuccessUpload,
-  onUploadError,
-  tagsData,
-}: IAddPhotoFormProps) => {
-  const onError = (code: string) => {
+  const onError = () => {
     showAlert("Какая-то ошибка. Попробуйте позже.", "error");
-
-    if (onUploadError) onUploadError();
   };
 
-  const submit = (formData: IAddPhotoFormData) => {
-    fetchPhoto(formData, userUID, onSuccessUpload, onError);
-  };
+  const addPhotoFinal = (formData: IAddPhotoFormData) =>
+    addPhoto(formData, userUID, onSuccess, onError);
 
-  const uploadPhotoFormData = useUploadPhotoForm<IAddPhotoFormData>(
-    tagsData,
-    registerInfo
-  );
+  console.log("[RENDER ADD FORM]");
 
   return (
-    <AddEditPhotoFormWidget
-      title={title}
-      photoFileRules={photoFileRules}
-      descRules={descRules}
-      onSubmit={uploadPhotoFormData.handleSubmit(submit)}
-      uploadPhotoFormData={uploadPhotoFormData}
+    <AddPhotoFormWidget
+      uploadLoading={loading}
+      addPhoto={addPhotoFinal}
+      tagsData={tagsData}
     />
   );
 };
 
-const mapStateToProps = (state: IGlobalState) => {
-  return {
-    tagsData: state.tags.tags,
-    userUID: state.auth.user.uid,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    showAlert: (message: string, type: Color) =>
-      dispatch(showAlertAC(message, type)),
-    fetchPhoto: (
-      photoFormData: IAddPhotoFormData,
-      userUID: string,
-      onSuccess?: any,
-      onError?: any
-    ) => {
-      dispatch(
-        addPhotoToFirestoreAC(photoFormData, userUID, onSuccess, onError)
-      );
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddPhotoForm);
+export default AddPhotoForm;

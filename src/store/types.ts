@@ -3,7 +3,7 @@ import { IPhotosState, ISearchState } from "./../photos/types";
 import { Action, Reducer } from "redux";
 import { Color } from "@material-ui/lab/Alert";
 import { IAuthState } from "./../auth/types";
-import { IPhotoData } from "./../types";
+import { TPhotoData } from "./../photos/types";
 import { ICheckboxItemData } from "./../component/FormElements/TagsCheckbox";
 
 export interface IGlobalState {
@@ -31,7 +31,7 @@ export type TModalActionTypes =
   | "HIDE_EDIT_FORM"
   | "HIDE_PHOTO_SLIDER"
   | "HIDE_SEARCH_FORM";
-  // | "HIDE_FORGET_PASS_FORM"
+// | "HIDE_FORGET_PASS_FORM"
 
 export type TTagsActionTypes =
   | "TAGS_REQUEST"
@@ -54,7 +54,7 @@ export interface IModalState {
   openSearch: boolean;
   // openForgetPassForm: boolean;
   initActiveIndex: number;
-  photo: IPhotoData;
+  photo: TPhotoData;
 }
 
 export type TTagsData = Map<string, ICheckboxItemData>;
@@ -78,7 +78,7 @@ export interface IAlertAction extends Action<TAlertActionTypes> {
 }
 
 export interface IModalAction extends Action<TModalActionTypes> {
-  photo?: IPhotoData;
+  photo?: TPhotoData;
   initActiveIndex?: number;
 }
 

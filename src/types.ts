@@ -46,11 +46,6 @@ export interface IPhoto {
   isActive: boolean;
 }
 
-export interface IPhotoData {
-  id: string;
-  photo: IPhoto;
-}
-
 export interface IAddEditPhotoPostRequest {
   file: File;
   id: string;

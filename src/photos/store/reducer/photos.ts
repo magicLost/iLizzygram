@@ -6,7 +6,7 @@ const photosInitialState: IPhotosState = {
   nextPageDocRef: undefined,
   hasNextPage: false,
   photos: undefined,
-  loading: true,
+  loading: false,
   error: false,
   addLoading: false,
   addError: false,
@@ -116,6 +116,18 @@ const reducer: Reducer<IPhotosState, IPhotosAction> = (
       return {
         ...state,
         photos: newPhotos1,
+      };
+
+    case "DELETE_PHOTO":
+      const allPhotos = state.photos;
+      allPhotos.delete(action.photoId);
+
+      const newPhotos3 = new Map(allPhotos);
+
+      console.log("EDIT_PHOTO", newPhotos1);
+      return {
+        ...state,
+        photos: newPhotos3,
       };
 
     default:
