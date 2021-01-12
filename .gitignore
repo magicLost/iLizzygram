@@ -1,0 +1,6 @@
+/node_modules/
+/.next/
+/static/images/
+/static/google.svg
+/static/logo.svg
+/public/

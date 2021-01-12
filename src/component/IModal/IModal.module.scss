@@ -1,0 +1,32 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  border: none;
+  background-color: transparent;
+}
+.wrapperForm {
+  position: relative;
+  outline: 0;
+  &:focus {
+    outline: 0 !important ;
+  }
+  overflow: auto;
+  max-height: 80%;
+  background-color: white;
+  padding: 50px 25px 25px;
+}
+
+.wrapperSlider {
+  position: relative;
+  outline: 0;
+  &:focus {
+    outline: 0 !important ;
+  }
+  overflow: auto;
+  //maxHeight:  80% ;
+  background-color: white;
+  //padding:  50px 25px 25px ;
+  width: 100%;
+}

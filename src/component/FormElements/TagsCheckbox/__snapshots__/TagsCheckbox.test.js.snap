@@ -1,0 +1,369 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsCheckbox Render and props test Snapshots We got checkboxes on load data snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="root"
+    >
+      <fieldset
+        class="MuiFormControl-root formControl MuiFormControl-fullWidth"
+      >
+        <legend
+          class="MuiFormLabel-root"
+        >
+          My tags
+        </legend>
+        <div
+          class="MuiFormGroup-root formGroup"
+        >
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="123wsdf347423"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              на улице
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="123wsdf343423"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              улыбка
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked-6 Mui-checked MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  checked=""
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="123wsdd343423"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              дача
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="123wsdfj43423"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              на природе
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked-6 Mui-checked MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  checked=""
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="123wsdf34df23"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              дома
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-5 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input-8"
+                  data-indeterminate="false"
+                  name="12wwsdf343423"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              с петами
+            </span>
+          </label>
+        </div>
+        <p
+          class="MuiFormHelperText-root MuiFormHelperText-contained"
+        />
+      </fieldset>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`TagsCheckbox Render and props test Snapshots We got skeletons on load snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="root"
+    >
+      <fieldset
+        class="MuiFormControl-root formControl MuiFormControl-fullWidth"
+      >
+        <legend
+          class="MuiFormLabel-root"
+        >
+          My tags
+        </legend>
+        <div
+          class="MuiFormGroup-root formGroup"
+        >
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+          <div
+            class="container"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 20px; height: 30px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text skeleton MuiSkeleton-pulse"
+              style="width: 65px; height: 30px;"
+            />
+          </div>
+        </div>
+        <p
+          class="MuiFormHelperText-root MuiFormHelperText-contained"
+        />
+      </fieldset>
+    </div>
+  </div>
+</body>
+`;

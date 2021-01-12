@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorBoundary Render and props test Snapshots matches snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="ErrorBoundary"
+    >
+      <h5
+        class="MuiTypography-root title MuiTypography-h5 MuiTypography-colorError"
+      >
+        Какая-то ошибочка...
+      </h5>
+      <ul>
+        <li>
+          <p
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+          >
+            - Проверьте интернет соединение.
+          </p>
+        </li>
+        <li>
+          <p
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+          >
+            - Попробуйте перезагрузить страницу.
+          </p>
+        </li>
+        <li>
+          <p
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+          >
+            <a
+              class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+              href="/"
+            >
+              - На главную страницу.
+            </a>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;

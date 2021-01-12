@@ -1,0 +1,46 @@
+/* .root {
+  width: 90%;
+  margin: auto;
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+
+.message {
+  padding-top: 20px;
+}
+
+.error {
+  width: 500px;
+  margin: auto;
+  text-align: center;
+  padding-top: 20px;
+
+  .msg {
+    color: rgb(255, 101, 101);
+    padding-bottom: 7px;
+  }
+}
+
+/* .container {
+  margin: 5px;
+  width: 320px;
+  height: 180px;
+  //background-color: rgb(255, 176, 238);
+  text-align: center;
+  border-radius: 5px; */
+
+/* .image {
+        width: 320px;
+        height: 180px;
+        background-color: rgb(202, 255, 255);
+        text-align: center;
+        border-radius: 5px;
+      } */
+//}
+// }
+
+.fetchMore {
+  text-align: center;
+  padding-top: 35px;
+}
