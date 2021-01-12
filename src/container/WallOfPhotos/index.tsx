@@ -7,10 +7,10 @@ import WallOfPhotosWidget from "./WallOfPhotos";
 import { usePhotos } from "../../photos";
 import { showPhotoSliderAC, showEditFormAC } from "../../store";
 
-const getPhotoIndex = (eventTarget: any) => {
-  const index = eventTarget.dataset.index
-    ? parseInt(eventTarget.dataset.index)
-    : -1;
+const getPhotoIndex = (eventTarget: EventTarget) => {
+  //console.log("getPhotoIndex", eventTarget);
+  const indexValue = (eventTarget as HTMLElement).dataset.index;
+  const index = indexValue ? parseInt(indexValue) : -1;
   if (index === -1) throw new Error(`Bad bad image index === ${index}`);
 
   return index;
@@ -44,8 +44,8 @@ export const WallOfPhotos = () => {
     dispatch(showPhotoSliderAC(photo, index));
   };
 
-  const showEditPhotoForm = (event: any) => {
-    const index = getPhotoIndex(event.target);
+  const showEditPhotoForm = (index: number) => {
+    //const index = getPhotoIndex(eventTarget);
 
     const photo = getPhotoByIndex(photos, index);
 
@@ -56,7 +56,7 @@ export const WallOfPhotos = () => {
     state.auth.user ? state.auth.user.uid : ""
   );
 
-  console.log("[RENDER WALL_OF_PHOTS]", photos, loading, error);
+  console.log("[RENDER WALL_OF_PHOTS]");
 
   return (
     <WallOfPhotosWidget

@@ -13,7 +13,7 @@ import ErrorBoundary from "../component/ErrorBoundary";
 import SEO from "../component/SEO";
 //import SEO from "../component/SEO";
 //import Logo from "../component/Logo";
-import Photos from "../photos/container/Photos";
+//import Photos from "../photos/container/Photos";
 //import { IAuthUser } from "./../types";
 
 /* const LogoLoadable = loadable(
@@ -30,13 +30,14 @@ import Photos from "../photos/container/Photos";
   }
 );
  */
-const Home = ({ auth }) => {
+const Home = () => {
   return (
     <>
       <SEO />
       <ErrorBoundary>
         <main>
-          <Photos />
+          {/*  <Photos /> */}
+          <p>Hello</p>
         </main>
       </ErrorBoundary>
     </>

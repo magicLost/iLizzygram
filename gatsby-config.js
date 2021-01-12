@@ -4,9 +4,9 @@
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
-const LoadablePlugin = require("@loadable/webpack-plugin");
+//const LoadablePlugin = require("@loadable/webpack-plugin");
 
-exports.onCreateWebpackConfig = ({
+/* exports.onCreateWebpackConfig = ({
   stage,
   getConfig,
   rules,
@@ -17,7 +17,7 @@ exports.onCreateWebpackConfig = ({
   actions.setWebpackConfig({
     plugins: [new LoadablePlugin()],
   });
-};
+}; */
 
 module.exports = {
   /* Your site config here */
@@ -30,5 +30,9 @@ module.exports = {
     image: "/images/snape.jpg", // Path to your image you placed in the 'static' folder
     twitterUsername: "@occlumency",
   },
-  plugins: [`gatsby-plugin-material-ui`, `gatsby-plugin-sass`],
+  plugins: [
+    `gatsby-plugin-material-ui`,
+    `gatsby-plugin-sass`,
+    "gatsby-plugin-webpack-bundle-analyser-v2",
+  ],
 };

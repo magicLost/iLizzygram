@@ -31,7 +31,7 @@ export const updateChildren = (
   activeIndex: number,
   isTranslated: boolean,
   opacity: number,
-  classes: Record<"item", string>
+  classes: any
 ) => {
   console.log("[CAROUSEL OPACITY] UPDATE CHILDREN ", activeIndex);
 

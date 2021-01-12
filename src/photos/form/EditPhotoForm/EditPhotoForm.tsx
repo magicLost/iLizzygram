@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 //import classes from './EditPhotoForm.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
-import { useUploadPhotoForm, IRegisterInfo } from "../hook";
+//import { makeStyles } from "@material-ui/core/styles";
+import { useUploadPhotoForm } from "../hook";
 import IAddEditPhotoFormWidget from "../AddEditPhotoFormWidget";
 import { TPhotoData } from "../../types";
 import {
@@ -11,15 +11,16 @@ import {
   tagsRules,
 } from "../Photo.rules";
 import { getChangedData, getDefaultTagsIds } from "./helper";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 //import { saveEditedPhoto } from "../../controller";
-import { IGlobalState } from "../../../store/types";
+//import { IGlobalState } from "../../../store/types";
 import { TTagsData } from "../../../store/types";
 import { Color } from "@material-ui/lab/Alert";
-import { showAlertAC } from "../../../store";
-import { ISearchState } from "../../types";
-import { useEditPhoto } from "../../store/hook";
+//import { showAlertAC } from "../../../store";
+//import { ISearchState } from "../../types";
+//import { useEditPhoto } from "../../store/hook";
 import { editPhotoFormTitle } from "../../../config";
+import classes from "./EditPhotoForm.module.scss";
 
 export interface IEditPhotoFormData {
   desc?: string;
@@ -44,12 +45,12 @@ interface EditPhotoFormProps {
   tagsData?: TTagsData;
 }
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   wrapper: {
     display: "flex",
     justifyContent: "center",
   },
-});
+}); */
 
 const registerInfo = [
   { name: "tags", rules: tagsRules },
@@ -68,7 +69,7 @@ export const EditPhotoForm: FC<EditPhotoFormProps> = ({
   onUploadError, */
   tagsData,
 }) => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   const defaultTagsIds = getDefaultTagsIds(prevPhoto.photo);
 

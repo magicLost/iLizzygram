@@ -1,0 +1,30 @@
+.root {
+  min-width: 350px;
+  max-width: 650px;
+}
+.title {
+  text-align: center;
+  //textTransform: uppercase;
+  padding-bottom: 15px;
+}
+.tags {
+  width: 100%;
+  padding-bottom: 15px;
+}
+.ages {
+  width: 100%;
+  padding-bottom: 25px;
+}
+.submit {
+  padding-top: 6px;
+}
+.fieldset {
+  padding-top: 10px;
+}
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

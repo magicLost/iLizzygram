@@ -6,10 +6,10 @@ import thunk from "redux-thunk";
 import { authReducer } from "..";
 import { alertReducer, modalReducer } from "../../store";
 import Layout from "../../container/partial/Layout";
-import { initializeApp, apps } from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/firebase-firestore";
 import { firebaseConfig } from "../../config";
-import { useAuthSubscribe } from "../hook";
+import { useAuth } from "../hook";
 //import { db } from "../../container/ReduxWrapper";
 import Tabs from "../../component/Tabs";
 import PhotoTab from "./PhotoTab";
@@ -29,7 +29,7 @@ export default {
 };
 
 // CONFIG FIRESTORE
-if (!apps.length) initializeApp(firebaseConfig);
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
 /* 
 const db = firestore();
@@ -85,7 +85,7 @@ const ShowAuthState = () => {
 };
 
 const IDefault = () => {
-  useAuthSubscribe(
+  useAuth(
     /*  user => {
       store.dispatch(authAC(user));
     }, */

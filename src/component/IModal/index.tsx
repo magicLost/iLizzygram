@@ -1,18 +1,21 @@
 import React from "react";
-//import classes from './IModal.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Button from "@material-ui/core/Button";
+import classes from "./IModal.module.scss";
+//import { makeStyles } from "@material-ui/core/styles";
+//import CircularProgress from "@material-ui/core/CircularProgress";
+//import Button from "@material-ui/core/Button";
 //import classes from './LoadableBackDrop.module.scss';
 import Modal from "@material-ui/core/Modal";
 import ModalCloseButton from "../UI/ModalCloseButton";
 
+type TModalType = "slider" | "form";
+
 interface IModalProps {
   open: boolean;
+  type: TModalType;
   onClose: () => void | undefined;
   children: any;
 }
-
+/* 
 const useStyles = makeStyles({
   modal: {
     display: "flex",
@@ -22,7 +25,7 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: "transparent",
   },
-  wrapper: {
+  wrapperForm: {
     position: "relative",
     outline: 0,
     "&:focus": {
@@ -33,32 +36,28 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     padding: "50px 25px 25px",
   },
-  /* content: {
-    minWidth: "300px",
-    maxWidth: "600px",
-    minHeight: "200px",
+
+  wrapperSlider: {
+    position: "relative",
+    outline: 0,
+    "&:focus": {
+      outline: "0 !important",
+    },
+    overflow: "auto",
+    //maxHeight: "80%",
     backgroundColor: "white",
-    padding: "20px",
-    textAlign: "center",
-  }, */
-});
+    //padding: "50px 25px 25px",
+    width: "100%",
+  },
+}); */
 
-const IModal = ({ open, onClose, children }: IModalProps) => {
-  const classes = useStyles();
+const IModal = ({ open, type, onClose, children }: IModalProps) => {
+  //const classes = useStyles();
 
-  /* const [state, setState] = React.useState({
-    open: false,
-    showContent: false,
-  });
-  const handleClose = () => {
-    setState(state => ({ showContent: false, open: false }));
-  };
-  const handleToggle = () => {
-    setState(state => ({ showContent: false, open: true }));
-    setTimeout(() => {
-      setState(state => ({ ...state, showContent: true }));
-    }, 1000);
-  }; */
+  let wrapperClass = "";
+
+  if (type === "form") wrapperClass = classes.wrapperForm;
+  else if (type === "slider") wrapperClass = classes.wrapperSlider;
 
   return (
     <>
@@ -73,7 +72,7 @@ const IModal = ({ open, onClose, children }: IModalProps) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div className={classes.wrapper}>
+        <div className={wrapperClass}>
           <ModalCloseButton
             onClick={onClose}
             ariaLabel="Закрыть модальное окно."

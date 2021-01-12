@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 //import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -6,7 +6,15 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 //import { connect } from "react-redux";
 
-function EditPhotoMenuBtn({ showEditPhotoForm }: any) {
+export interface IEditPhotoMenuBtnProps {
+  index: number;
+  showEditPhotoForm: (index: number) => void;
+}
+
+function EditPhotoMenuBtn({
+  index,
+  showEditPhotoForm,
+}: IEditPhotoMenuBtnProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,9 +25,9 @@ function EditPhotoMenuBtn({ showEditPhotoForm }: any) {
     setAnchorEl(null);
   };
 
-  const onShowEditPhotoForm = () => {
+  const onShowEditPhotoForm = (event: MouseEvent<any>) => {
     handleClose();
-    showEditPhotoForm();
+    showEditPhotoForm(index);
   };
 
   /* const userBtn = React.cloneElement(userButton, {

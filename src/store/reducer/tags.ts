@@ -3,7 +3,7 @@ import { ITagsState, ITagsAction } from "./../types";
 
 const tagsInitialState: ITagsState = {
   tags: undefined,
-  loading: false,
+  loading: true,
   error: false,
 };
 

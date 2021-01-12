@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { makeStyles } from "@material-ui/core/styles";
+//import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import NavUserBtnWithMenu from "../../../component/NavUserBtnWithMenu";
@@ -9,6 +9,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IUserResponseToClient } from "../../../types";
 import googleIcon from "./../../../../static/google.svg";
+import classes from "./Header.module.scss";
 import Logo from "./../../../component/Logo";
 
 interface IHeaderProps {
@@ -18,7 +19,7 @@ interface IHeaderProps {
   logout: () => void;
 }
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   menuButton: {},
   appBar: {
     backgroundColor: "white", //"#55c57a"
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
     //margin: "auto",
     justifyContent: "space-around",
   },
-});
+}); */
 
 const GoogleIcon = () => <img width={17} src={googleIcon} />;
 
@@ -94,7 +95,7 @@ const getAuthFragment = (
       </Button> */
 
 const Header = ({ user, loading, login, logout }: IHeaderProps) => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   const authFragment = getAuthFragment(user, loading, classes, login, logout);
 

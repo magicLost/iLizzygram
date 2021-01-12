@@ -11,22 +11,32 @@ export default {
   excludeStories: /.*Data$/,
 };
 
-export const Default = () => {
-  return (
-    <>
-      <IModal open={true} onClose={() => console.log("close")}>
-        <div
-          style={{
-            width: "300px",
-            height: "200px",
-            textAlign: "center",
-            backgroundColor: "white",
-            padding: "20px",
-          }}
-        >
-          <p>Hello.</p>
-        </div>
-      </IModal>
-    </>
-  );
+const Template = args => (
+  <IModal {...args}>
+    <div
+      style={{
+        width: "300px",
+        height: "200px",
+        textAlign: "center",
+        backgroundColor: "white",
+        padding: "20px",
+      }}
+    >
+      <p>Hello.</p>
+    </div>
+  </IModal>
+);
+
+export const FormType = Template.bind({});
+FormType.args = {
+  type: "form",
+  open: true,
+  onClose: () => console.log("close"),
+};
+
+export const SliderType = Template.bind({});
+SliderType.args = {
+  type: "slider",
+  open: true,
+  onClose: () => console.log("close"),
 };

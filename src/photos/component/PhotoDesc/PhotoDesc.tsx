@@ -1,6 +1,6 @@
 import React from "react";
-//import classes from './PhotoDesc.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
+import classes from "./PhotoDesc.module.scss";
+//import { makeStyles } from "@material-ui/core/styles";
 //import IconButton from "@material-ui/core/IconButton";
 //import ImageSharp from "../../../component/UI/ImageSharp";
 //import ImageWithDesc from "../UI/ImageWithDesc/ImageWithDesc";
@@ -16,9 +16,7 @@ import { TPhotoData } from "../../types";
 import { getDate, getFormatDate, getPhotoTags } from "./helper";
 import Skeleton from "@material-ui/lab/Skeleton";
 
-//import classes from "*.module.css";
-
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   buttons: {
     display: "flex",
     justifyContent: "space-around",
@@ -72,7 +70,7 @@ const useStyles = makeStyles({
     textAlign: "center",
     color: "red",
   },
-});
+}); */
 
 interface PhotoDescProps {
   /* 
@@ -135,7 +133,7 @@ export const PhotoDesc = ({
   tagsState,
   showEditPhotoForm,
 }: PhotoDescProps) => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   //console.log("[PRE RENDER PHOTO DESC] ", date, typeof date);
   const tagsElements = getTags(tagsState, photo.photo.tags, classes);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { action } from "@storybook/addon-actions";
+//import { action } from "@storybook/addon-actions";
 import PreloadBase64Image from ".";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 import image3 from "./../../../../../static/images/ladki.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 

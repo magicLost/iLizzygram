@@ -1,19 +1,11 @@
-import React, {
-  useRef,
-  useMemo,
-  cloneElement,
-  Children,
-  ReactNode,
-  useEffect,
-  CSSProperties,
-} from "react";
+import React, { useMemo, Children, ReactNode } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CarouselTranslateController from "./controller";
-import { ICarouselTranslateState } from "./../types";
+import cssClasses from "./CarouselTranslate.module.scss";
 import { stringifyTranslateX, makeListStyle, IListStyledProps } from "./helper";
 
 const useStyles = makeStyles({
-  root: {
+  /* root: {
     touchAction: "pan-y",
     width: "100%",
     overflow: "hidden",
@@ -24,7 +16,7 @@ const useStyles = makeStyles({
     width: "100%",
     listStyle: "none",
     display: "flex",
-  },
+  }, */
 
   listModify: (props: IListStyledProps) => {
     const listStyle: any = {
@@ -42,14 +34,14 @@ const useStyles = makeStyles({
     return listStyle;
   },
 
-  item: {
+  /*  item: {
     width: "100%",
     minHeight: "300px",
     textAlign: "center",
     //background: linear-gradient(45deg, pink, cyan);
     flexGrow: 0,
     flexShrink: 0,
-  },
+  }, */
 });
 
 interface ICarouselTranslateProps {
@@ -57,15 +49,12 @@ interface ICarouselTranslateProps {
   children: ReactNode[];
 }
 
-const updateChildren = (
-  children: ReactNode[],
-  classes: Record<"item", string>
-) => {
+const updateChildren = (children: ReactNode[], itemClass: string) => {
   console.log("[CAROUSEL TRANSLATE] UPDATE CHILDREN", Children.count(children));
   return Children.map(children, (child, index) => {
     //return cloneElement(child, { activeIndex: 3 });
     return (
-      <li key={classes.item + index} className={classes.item}>
+      <li key={itemClass + index} className={itemClass}>
         {child}
       </li>
     );
@@ -84,21 +73,22 @@ const CarouselTranslate = ({
     isTranslated: controller.isTranslated,
   });
 
-  const updatedChildren = useMemo(() => updateChildren(children, classes), [
-    children,
-  ]);
+  const updatedChildren = useMemo(
+    () => updateChildren(children, cssClasses.item),
+    [children]
+  );
 
   console.log("[CAROUSEL TRANSLATE] RENDER");
 
   return (
     <div
       ref={controller.containerRef}
-      className={classes.root}
+      className={cssClasses.root}
       onMouseDown={controller.onMouseDown}
       onTouchStart={controller.onTouchStart}
       onTouchEnd={controller.onTouchEnd}
     >
-      <ul className={`${classes.list} ${classes.listModify}`}>
+      <ul className={`${cssClasses.list} ${classes.listModify}`}>
         {updatedChildren}
       </ul>
     </div>

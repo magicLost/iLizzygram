@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
 import {
   saveNewPhoto,
   saveEditedPhoto,
@@ -15,6 +15,10 @@ import {
 } from "../../types";
 import { IGlobalState } from "./../../../store/types";
 import { useEffect } from "react";
+import { isEqualSearchState } from "./utils";
+
+const isInitRequest = false;
+let prevSearchState = null;
 
 export const usePhotos = () => {
   const dispatch = useDispatch();
@@ -22,14 +26,30 @@ export const usePhotos = () => {
   const { photoState, searchState } = useSelector<
     IGlobalState,
     { photoState: IPhotosState; searchState: ISearchState }
-  >(state => ({ photoState: state.photos, searchState: state.search }));
+  >(
+    state => ({ photoState: state.photos, searchState: state.search }),
+    shallowEqual
+  );
 
   useEffect(() => {
-    if (!photoState.photos && !photoState.loading && !photoState.error) {
-      console.log("[USE PHOTOS] USE EFFECT | FETCH PHOTOS");
+    //console.log("[USE PHOTOS] USE EFFECT | FETCH PHOTOS");
+    if (
+      (prevSearchState === null ||
+        !isEqualSearchState(prevSearchState, searchState)) &&
+      photoState.loading !== true
+    ) {
+      console.log(
+        "[USE PHOTOS] USE EFFECT | LOAD PHOTOS",
+        isInitRequest,
+        photoState.loading,
+        prevSearchState
+          ? isEqualSearchState(prevSearchState, searchState)
+          : "No prevSearchState"
+      );
+      prevSearchState = searchState;
       loadPhotos(dispatch, searchState);
     }
-  }, []);
+  }, [searchState]);
 
   const loadMore = () => {
     fetchMore(dispatch, photoState.nextPageDocRef);
@@ -52,10 +72,13 @@ export const useAddPhoto = () => {
   const { loading, error } = useSelector<
     IGlobalState,
     { loading: boolean; error: boolean }
-  >(state => ({
-    loading: state.photos.addLoading,
-    error: state.photos.addError,
-  }));
+  >(
+    state => ({
+      loading: state.photos.addLoading,
+      error: state.photos.addError,
+    }),
+    shallowEqual
+  );
 
   return {
     addPhoto: (
@@ -75,10 +98,13 @@ export const useEditPhoto = () => {
   const { loading, error } = useSelector<
     IGlobalState,
     { loading: boolean; error: boolean }
-  >(state => ({
-    loading: state.photos.editLoading,
-    error: state.photos.editError,
-  }));
+  >(
+    state => ({
+      loading: state.photos.editLoading,
+      error: state.photos.editError,
+    }),
+    shallowEqual
+  );
 
   const searchState = useSelector<IGlobalState, ISearchState>(
     state => state.search

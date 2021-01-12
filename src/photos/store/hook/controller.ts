@@ -26,7 +26,8 @@ import {
 import { makeQuery } from "./helper/QueryHelper";
 import random from "lodash.random";
 import {
-  allPhotosStartRequestAC,
+  allPhotosStartNewRequestAC,
+  allPhotosStartMoreRequestAC,
   fetchMorePhotosRequestSuccessAC,
   allPhotosRequestSuccessAC,
   allPhotosRequestErrorAC,
@@ -47,7 +48,8 @@ export const fetchPhotos = async (
   isFetchMore: boolean = false
 ) => {
   try {
-    dispatch(allPhotosStartRequestAC());
+    if (!isFetchMore) dispatch(allPhotosStartNewRequestAC());
+    else dispatch(allPhotosStartMoreRequestAC());
 
     const querySnapshot = await query.get();
 

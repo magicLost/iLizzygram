@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "firebase/firebase-firestore";
+import React from "react";
+//import "firebase/firebase-firestore";
 import { getAll, generateAndSavePhotosData } from "../helper";
 import Button from "@material-ui/core/Button";
 import { db } from "../../container/ReduxWrapper";

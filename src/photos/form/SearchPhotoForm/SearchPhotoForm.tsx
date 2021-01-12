@@ -1,23 +1,24 @@
 import React from "react";
 //import classes from './SearchPhotoForm.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
+//import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
+/* import Checkbox from "@material-ui/core/Checkbox";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControlLabel from "@material-ui/core/FormControlLabel";*/
 import Typography from "@material-ui/core/Typography";
 import TagsCheckbox from "../../../component/FormElements/TagsCheckbox";
 import { useSearchForm } from "./hook";
 import { IGlobalState, TTagsData } from "./../../../store/types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { ISearchState } from "../../types";
 //import AgeSlider from "../../../component/FormElements/AgeSlider";
 import AgeSelect from "../../../component/FormElements/AgeSelect";
-import { lizzyYearsOld, searchPhotoFormTitle } from "../../../config";
-import { setSearchStateAC } from "../../store/action/search";
+import { searchPhotoFormTitle } from "../../../config";
+//import { setSearchStateAC } from "../../store/action/search";
 import { fromFormDataToState } from "./helper";
+import classes from "./SearchPhotoForm.module.scss";
 
 interface SearchPhotoFormProps {
   state: ISearchState;
@@ -26,7 +27,7 @@ interface SearchPhotoFormProps {
   setSearchState: (state: ISearchState) => void | undefined;
 }
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   root: {
     minWidth: "350px",
     maxWidth: "650px",
@@ -57,14 +58,14 @@ const useStyles = makeStyles({
     flexGrow: 0,
     flexShrink: 0,
   },
-});
+}); */
 
 export const SearchPhotoForm = ({
   state,
   tagsData,
   setSearchState,
 }: SearchPhotoFormProps) => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   const {
     tagsProps,

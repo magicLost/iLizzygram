@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-//import classes from './FinalImageSharp.module.scss';
+//import classes from './PreloadBase64Image.module.scss';
 import { makeStyles } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+//import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { IPhoto } from "./../../../../types";
 
 /* export interface IFinalImageSharpProps {

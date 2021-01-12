@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import ImageInFixedWrapper from "../../../component/UI/ImageSharp/ImageInFixedWrapper";
 import { IBase64ImageProps } from "../../../component/UI/ImageSharp/PreloadBase64Image";
-import { IPhoto } from "./../../../types";
+//import { IPhoto } from "./../../../types";
 import classes from "./PhotoCard.module.scss";
 import EditPhotoMenuBtn from "./../../../component/UI/EditPhotoMenuBtn";
 
 export interface IPhotoCardProps extends IBase64ImageProps {
   isEditable?: boolean;
-  showEditPhotoForm?: (event: any) => void;
+  showEditPhotoForm?: (index: number) => void;
   /* photo: IPhoto;
   alt: string;
   //isHidden?: boolean;
@@ -34,7 +34,10 @@ const PhotoCard: FC<IPhotoCardProps> = props => {
 
       {isEditable && (
         <div className={classes.moreActionsBtn}>
-          <EditPhotoMenuBtn showEditPhotoForm={props.showEditPhotoForm} />
+          <EditPhotoMenuBtn
+            index={props.index}
+            showEditPhotoForm={props.showEditPhotoForm}
+          />
         </div>
       )}
     </div>

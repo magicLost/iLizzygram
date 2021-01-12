@@ -1,19 +1,19 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-//import classes from './Logo.module.scss';
-import { makeStyles } from "@material-ui/core/styles";
+import classes from "./Logo.module.scss";
+//import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "gatsby";
 
 //interface LogoProps {}
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   iconButton: {
     padding: "5px",
   },
-});
+}); */
 
 const Logo = () => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   console.log("[RENDER LOGO]");
   return (

@@ -1,9 +1,10 @@
 import React, { ReactNode } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+//import { makeStyles } from "@material-ui/core/styles";
 import CarouselOpacityController from "./controller";
 import { updateChildren } from "./helper";
+import classes from "./CarouselOpacity.module.scss";
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   root: {
     width: "100%",
     height: "100%",
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
       marginLeft: 0,
     },
   },
-});
+}); */
 
 interface ICarouselOpacityProps {
   controller: CarouselOpacityController;
@@ -45,7 +46,7 @@ const CarouselOpacity = ({
   children,
   onFetchMore,
 }: ICarouselOpacityProps) => {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   controller.onFetchMore = onFetchMore;
 

@@ -5,23 +5,33 @@ import thunk from "redux-thunk";
 import { modalReducer, alertReducer, tagsReducer } from "./../../store";
 import { photoReducer, searchReducer } from "./../../photos";
 import { authReducer } from "./../../auth";
-import { firestore, initializeApp, apps } from "firebase/app";
-import "firebase/firebase-firestore";
-import {
+//import firebase from "firebase/app";
+//import "firebase/firebase-firestore";
+/* import {
   firebaseConfig,
   photosCollectionName,
   tagsCollectionName,
-} from "../../config";
-import Layout from "./../partial/Layout";
+} from "../../config"; */
+//import Layout from "./../partial/Layout";
 
 //CONFIG FIREBASE
 
-if (!apps.length) initializeApp(firebaseConfig);
+/* if (firebase.apps && !firebase.apps.length)
+  firebase.initializeApp(firebaseConfig); */
 
-export const db = firestore();
+export let db;
 
-export const photosCollection = db.collection(photosCollectionName);
-export const tagsCollection = db.collection(tagsCollectionName);
+export let photosCollection;
+export let tagsCollection;
+
+/* if (typeof window !== "undefined") {
+  db = firebase.firestore(); 
+
+  photosCollection = db.collection(photosCollectionName);
+  tagsCollection = db.collection(tagsCollectionName);
+}*/
+
+//if (apps && !apps.length) initializeApp(firebaseConfig);
 
 // ENABLE CACHE https://firebase.google.com/docs/firestore/manage-data/enable-offline?authuser=0
 /* firestore().enablePersistence()
@@ -84,8 +94,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middleware))
 );
 
-export default ({ element }) => (
-  <Provider store={store}>
-    <Layout>{element}</Layout>
-  </Provider>
-);
+//<Layout>{element}</Layout>
+export default ({ element }) => {
+  return <Provider store={store}>{element}</Provider>;
+};

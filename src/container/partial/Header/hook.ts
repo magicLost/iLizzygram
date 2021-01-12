@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logoutAC, loginAC } from "../../../auth";
 import { useAuth } from "../../../auth/hook";
-import { IGlobalState } from "./../../../store/types";
-import { IUserResponseToClient } from "./../../../types";
+//import { IGlobalState } from "./../../../store/types";
+//import { IUserResponseToClient } from "./../../../types";
 
 /*  user: state.auth.user,
     loading: state.auth.loading,

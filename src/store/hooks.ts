@@ -3,29 +3,34 @@ import {
   tagsRequestSuccessAC,
   tagsRequestErrorAC,
 } from "./action/tags";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { IAlertState, IGlobalState, ITagsState, TTagsData } from "./types";
 import { useEffect } from "react";
 //import { ICheckboxItemData } from "./../../component/FormElements/TagsCheckbox";
 import { db } from "./../container/ReduxWrapper";
 import { tagsCollectionName } from "../config";
-import { showAlertAC } from "./action/alert";
-import { Color } from "@material-ui/lab/Alert";
+//import { showAlertAC } from "./action/alert";
+//import { Color } from "@material-ui/lab/Alert";
 
 let isRequest = false;
+let isInitRequest = false;
 
 /* TAGS */
 export const useTags = () => {
   const dispatch = useDispatch();
 
-  const tagsState = useSelector<IGlobalState, ITagsState>(state => state.tags);
+  const tagsState = useSelector<IGlobalState, ITagsState>(
+    state => state.tags,
+    shallowEqual
+  );
 
   useEffect(() => {
-    if (!tagsState.tags && !tagsState.loading && !tagsState.error) {
+    if (isInitRequest === false) {
       console.log("[USE TAGS] USE EFFECT | FETCH TAGS");
+      isInitRequest = true;
       fetchTags(dispatch);
     }
-  }, [tagsState.tags]);
+  }, []);
 
   return {
     tagsState,

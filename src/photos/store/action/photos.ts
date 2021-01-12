@@ -14,9 +14,15 @@ import { addPhotoUrl, editPhotoUrl } from "../../../config"; */
 import { TPhotoData } from "../../types";
 //import random from "lodash.random";
 
-export const allPhotosStartRequestAC = (): IPhotosAction => {
+export const allPhotosStartNewRequestAC = (): IPhotosAction => {
   return {
-    type: "ALL_PHOTOS_START_REQUEST",
+    type: "ALL_PHOTOS_START_NEW_REQUEST",
+  };
+};
+
+export const allPhotosStartMoreRequestAC = (): IPhotosAction => {
+  return {
+    type: "ALL_PHOTOS_START_MORE_REQUEST",
   };
 };
 

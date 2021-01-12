@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import { TTagsData } from "../../store/types";
 import { TPhotosData } from "./../../photos/types";
-import { connect } from "react-redux";
-import { IGlobalState } from "../../store/types";
+//import { connect } from "react-redux";
+//import { IGlobalState } from "../../store/types";
 import classes from "./WallOfPhotos.module.scss";
 //import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -18,7 +18,7 @@ interface WallOfPhotosProps {
   loading: boolean;
   error: boolean;
   showPhotoSlider: (event: any) => void;
-  showEditPhotoForm: (event: any) => void;
+  showEditPhotoForm: (index: number) => void;
   userUID: string;
 }
 
@@ -40,8 +40,8 @@ const getSkeletons = (numberOfSkeletons: number) => {
 
 const getPhotosElements = (
   photos: TPhotosData,
-  showPhotoSlider: (event: any) => void,
-  showEditPhotoForm: (event: any) => void,
+  showPhotoSlider: (event: MouseEvent<any>) => void,
+  showEditPhotoForm: (index: number) => void,
   userUID: string
 ) => {
   const elements = [];
@@ -74,6 +74,7 @@ const getPhotosElements = (
       </div> */
     elements.push(
       <PhotoCard
+        key={id}
         isEditable={userUID === photo.addedByUserUID}
         photo={photo}
         onImageClick={showPhotoSlider}
@@ -204,7 +205,7 @@ export const WallOfPhotos: FC<WallOfPhotosProps> = ({
 
   //const photoElements = getPhotos(photos, loading, error, onImgClick, limit);
 
-  console.log("[RENDER WALL_OF_PHOTS WIDGET]", photos, loading, error);
+  console.log("[RENDER WALL_OF_PHOTS WIDGET]");
 
   return (
     <>

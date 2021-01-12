@@ -40,7 +40,7 @@ const Template = args => <PhotoCard {...args} />;
 const baseArgs = {
   //wrapperAspectRatio: 1.8,
   isEditable: true,
-  showEditPhotoForm: () => console.log("showEditPhotoForm"),
+  showEditPhotoForm: (event: any) => console.log("showEditPhotoForm", event),
   isActive: true,
   alt: "alt",
 };

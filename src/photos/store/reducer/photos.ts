@@ -19,7 +19,14 @@ const reducer: Reducer<IPhotosState, IPhotosAction> = (
   action: IPhotosAction
 ) => {
   switch (action.type) {
-    case "ALL_PHOTOS_START_REQUEST":
+    case "ALL_PHOTOS_START_NEW_REQUEST":
+      return {
+        ...state,
+        photos: undefined,
+        loading: true,
+        error: false,
+      };
+    case "ALL_PHOTOS_START_MORE_REQUEST":
       return {
         ...state,
         loading: true,

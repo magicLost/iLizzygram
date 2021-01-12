@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase/app";
+//import "firebase/auth";
 import PhotoTab from "./PhotoTab";
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -19,10 +19,10 @@ export default {
 const singinPopUp = async () => {
   try {
     const res = await firebase.auth().signInWithPopup(provider);
-    var token = res.credential.accessToken;
+    //var token = res.credential.accessToken;
     // The signed-in user info.
     var user = res.user;
-    console.log("SUCCESS", user, token);
+    console.log("SUCCESS", user);
   } catch (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -39,7 +39,7 @@ const signinRedirect = async () => {
     firebase.auth().signInWithRedirect(provider);
 
     const res = await firebase.auth().getRedirectResult();
-    var token = res.credential.accessToken;
+    //var token = res.credential.accessToken;
     // The signed-in user info.
     var user = res.user;
     console.log("SUCCESS", user.email);

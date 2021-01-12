@@ -1,13 +1,9 @@
 import React from "react";
-import { usePhotos } from "../../store/hook";
+import { usePhotoSlider } from "./hooks";
 import PhotoSliderWidget from "./PhotoSlider";
 
-interface PhotoSliderProps {
-  initActiveIndex?: number;
-}
-
-export const PhotoSlider = ({ initActiveIndex = 0 }: PhotoSliderProps) => {
-  const { photoState, loadMore } = usePhotos();
+export const PhotoSlider = () => {
+  const { photoState, loadMore, initActiveIndex } = usePhotoSlider();
 
   console.log("[PHOTO SLIDER] RENDER", initActiveIndex, photoState.loading);
   return (

@@ -4,7 +4,7 @@ import ModalCloseButton from ".";
 
 export default {
   component: ModalCloseButton,
-  title: "Button/ModalCloseButton",
+  title: "Buttons/ModalCloseButton",
   decorators: [],
   //decorators: [withKnobs],
   // Our exports that end in "Data" are not stories.

@@ -1,41 +1,27 @@
 import React, { useEffect } from "react";
-import { action } from "@storybook/addon-actions";
 import AddPhotoForm from "../form/AddPhotoForm";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import {
-  alertReducer,
-  fetchTagsAC,
-  modalReducer,
-  tagsReducer,
-} from "../../store";
-import {
-  allPhotosRequestSuccessAC,
-  allPhotosRequestErrorAC,
-  fetchPhotosAC,
-} from "../store/action/photos";
-//import { firestore, initializeApp, apps } from "firebase/app";
-import "firebase/firebase-firestore";
+import { alertReducer, modalReducer, tagsReducer } from "../../store";
+///import firebase from "firebase/app";
+//import "firebase/firebase-firestore";
 //import { firebaseConfig } from "../config";
-import {
+/* import {
   getAll,
   generateAndSavePhotosData,
   resFirestoreToMapObj,
   updatePhotosWithTagsArrField,
-} from "../helper";
+} from "../helper"; */
 import Button from "@material-ui/core/Button";
-//import { useSubscribe, reSubscribe, subscribe } from "./store/hook";
-//import { usePhotos } from "./store/ihook";
-//import WallOfPhotos from "../container/WallOfPhotos";
 import { photoReducer, searchReducer } from "..";
 import Photos from "../container/Photos";
 import Alert from "../../component/Alert";
-import { db } from "../../container/ReduxWrapper";
+//import { db } from "../../container/ReduxWrapper";
 import Tabs from "../../component/Tabs";
 import GenerateTab from "./GenerateTab";
 import ShowDataTab from "./ShowDataTab";
-import { authReducer, useInit, authAC } from "../../auth";
+import { authReducer, useAuth } from "../../auth";
 
 export default {
   component: AddPhotoForm,
@@ -122,24 +108,12 @@ const errorPhotos = () => store.dispatch(allPhotosRequestErrorAC()); */
 export const Default = () => {
   //console.log("STORE", store.getState();
 
-  useInit(
-    user => {
-      store.dispatch(authAC(user));
-    },
-    err => {
-      console.log("On auth subscribe error", err);
-    },
-    () => {
-      console.log("On auth subscribe successs");
-    }
-  );
-
   return (
     <Provider store={store}>
       <>
         <Tabs titles={["Photos", "Generate data", "Show data"]}>
           <>
-            <div style={{ padding: "20px", border: "2px solid cyan" }}>
+            <div style={{ padding: "20px" }}>
               <Photos />
             </div>
             <Alert />
